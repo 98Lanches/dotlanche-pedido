@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\DotLanches.Application\DotLanches.UseCases.csproj" />
+    <ProjectReference Include="..\..\Gateways\DotLanches.Gateways\DotLanches.Gateways.csproj" />
+    <ProjectReference Include="..\..\Presenters\DotLanches.Presenters\DotLanches.Presenters.csproj" />
+  </ItemGroup>
+
+
+</Project>

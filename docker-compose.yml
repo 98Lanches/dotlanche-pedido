@@ -1,0 +1,33 @@
+version: '3.9'
+
+networks:
+  dotLanchesNetwork:
+    driver: bridge
+
+services:
+  db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sudowoodo
+      MONGO_INITDB_ROOT_PASSWORD: P455w0rd
+    ports:
+    - "27017:27017" 
+    networks:
+      - dotLanchesNetwork
+
+  api:
+    build: 
+      context: .
+      dockerfile: ./FrameworksAndDrivers/Web/DotLanches.Api/Dockerfile
+    container_name: dotlanches_api
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=mongodb://sudowoodo:P455w0rd@db:27017/?appName=dotlanche
+    networks:
+      - dotLanchesNetwork

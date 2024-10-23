@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dtos\ClienteDto.cs" />
+    <Compile Remove="Dtos\ComboDto.cs" />
+    <Compile Remove="Dtos\PagamentoRequestDto.cs" />
+    <Compile Remove="Dtos\PedidoDto.cs" />
+    <Compile Remove="Dtos\ProdutoDto.cs" />
+    <Compile Remove="Presenter\ClienteMapper.cs" />
+    <Compile Remove="Presenter\ComboMapper.cs" />
+    <Compile Remove="Presenter\PedidoMapper.cs" />
+    <Compile Remove="Presenter\ProdutoMapper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\DotLanches.Domain\DotLanches.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
