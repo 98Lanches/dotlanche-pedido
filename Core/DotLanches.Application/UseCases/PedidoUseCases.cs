@@ -7,15 +7,9 @@ namespace DotLanches.Application.UseCases
 {
     public static class PedidoUseCases
     {
-        public static async Task<Pedido> Create(Pedido pedido, IProdutoGateway produtoGateway, IPedidoGateway pedidoGateway)
+        public static async Task<Pedido> Create(Pedido pedido, IPedidoGateway pedidoGateway)
         {
-            foreach (var combo in pedido.Combos)
-            {
-                combo.Lanche = await produtoGateway.GetById(combo.Lanche.Id);
-                combo.Acompanhamento = await produtoGateway.GetById(combo.Acompanhamento.Id);
-                combo.Bebida = await produtoGateway.GetById(combo.Bebida.Id);
-                combo.Sobremesa = await produtoGateway.GetById(combo.Sobremesa.Id);
-            }
+            //!TODO Add service to get recover price from produto
 
             pedido.CalculateTotalPrice();
 

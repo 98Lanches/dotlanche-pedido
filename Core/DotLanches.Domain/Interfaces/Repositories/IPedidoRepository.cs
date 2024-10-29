@@ -7,9 +7,6 @@ namespace DotLanches.Domain.Interfaces.Repositories
         Task Add(Pedido pedido);
 
         Task<Pedido> Update(Pedido pedido);
-
-        Task<int> GetLastQueueKeyNumber();
-
         Task<IEnumerable<Pedido>> GetPedidosQueue();
 
         Task<Pedido?> GetById(Guid id);

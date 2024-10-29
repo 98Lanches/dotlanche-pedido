@@ -32,18 +32,6 @@ namespace DotLanches.DataMongo.Repositories
                 .ToListAsync();
         }
 
-        public async Task<int> GetLastQueueKeyNumber()
-        {
-            var lastQueueKey = await _pedidosCollection
-                .Find(_ => true)
-                .SortByDescending(p => p.QueueKey)
-                .Limit(1)
-                .Project(p => p.QueueKey)
-                .FirstOrDefaultAsync();
-
-            return lastQueueKey;
-        }
-
         public async Task<Pedido?> GetById(Guid id)
         {
             return await _pedidosCollection

@@ -7,20 +7,17 @@ namespace DotLanches.Controllers
 {
     public class AdapterPedidoController
     {
-        private readonly IProdutoRepository _produtoRepository;
         private readonly IPedidoRepository _pedidoRepository;
 
-        public AdapterPedidoController(IProdutoRepository produtoRepository, IPedidoRepository pedidoRepository)
+        public AdapterPedidoController(IPedidoRepository pedidoRepository)
         {
-            _produtoRepository = produtoRepository;
             _pedidoRepository = pedidoRepository;
         }
 
         public async Task<Guid> Create(Pedido pedido)
         {
-            var produtoGateway = new ProdutoGateway(_produtoRepository);
             var pedidoGateway = new PedidoGateway(_pedidoRepository);
-            var newPedido = await PedidoUseCases.Create(pedido, produtoGateway, pedidoGateway);
+            var newPedido = await PedidoUseCases.Create(pedido, pedidoGateway);
 
             return newPedido.Id;
         }

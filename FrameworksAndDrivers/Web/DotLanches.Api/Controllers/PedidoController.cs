@@ -15,12 +15,10 @@ namespace DotLanches.Api.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly IPedidoRepository _pedidoRepository;
-        private readonly IProdutoRepository _produtoRepository;
 
-        public PedidoController(IPedidoRepository pedidoRepository, IProdutoRepository produtoRepository)
+        public PedidoController(IPedidoRepository pedidoRepository)
         {
             _pedidoRepository = pedidoRepository;
-            _produtoRepository = produtoRepository;
         }
 
         /// <summary>
@@ -33,7 +31,7 @@ namespace DotLanches.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] PedidoDto pedidoDto)
         {
-            var adapterPedido = new AdapterPedidoController(_produtoRepository, _pedidoRepository);
+            var adapterPedido = new AdapterPedidoController( _pedidoRepository);
             var pedidoId = await adapterPedido.Create(pedidoDto.ToDomainModel());
 
             return new CreatedResult(string.Empty, new {pedidoId});
@@ -47,7 +45,7 @@ namespace DotLanches.Api.Controllers
         [ProducesResponseType(typeof(IEnumerable<Pedido>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetQueue()
         {
-            var adapterPedido = new AdapterPedidoController(_produtoRepository, _pedidoRepository);
+            var adapterPedido = new AdapterPedidoController( _pedidoRepository);
             var pedidoList = await adapterPedido.GetPedidosQueue();
 
             return Ok(pedidoList);
@@ -65,7 +63,7 @@ namespace DotLanches.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateStatus([FromRoute] Guid idPedido, [Required][FromQuery] StatusDto statusDto)
         {
-            var adapterPedido = new AdapterPedidoController(_produtoRepository, _pedidoRepository);
+            var adapterPedido = new AdapterPedidoController(_pedidoRepository);
             var updatedPedido = await adapterPedido.UpdateStatus(idPedido, statusDto.Status);
             return Ok(updatedPedido);
         }

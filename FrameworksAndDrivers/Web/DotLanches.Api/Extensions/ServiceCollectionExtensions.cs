@@ -1,7 +1,5 @@
 ﻿using DotLanches.Api.Filters;
 using DotLanches.DataMongo.Extensions;
-using DotLanches.Domain.Interfaces.ExternalInterfaces;
-using DotLanches.Payment.FakeCheckout;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -15,7 +13,6 @@ namespace DotLanches.Api.Extensions
             services.ConfigureSwagger();
 
             services.ConfigureDatabase(configuration);
-            services.AddScoped<ICheckout, FakeCheckout>();
             services.AddExceptionHandler<ExceptionFilter>();
             services.AddProblemDetails();
 

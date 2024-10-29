@@ -10,19 +10,16 @@ public class Pedido
     public string? ClienteCpf { get; set; }
     public EStatus Status { get; set; }
     public decimal TotalPrice { get; set; }
-    public Guid IdCombo { get; set; }
-    public int QueueKey { get; set; }
-    public DateTime AddedToQueueAt { get; set; }
-    public Guid IdPagamento { get; set; }
+    public IEnumerable<Combo> Combos { get; set; }
 
     private Pedido() { }
 
-    public Pedido(DateTime createdAt, string? clienteCpf, Guid combo)
+    public Pedido(DateTime createdAt, string? clienteCpf, IEnumerable<Combo> combos)
     {
         Id = Guid.NewGuid();
         CreatedAt = createdAt;
         ClienteCpf = clienteCpf;
-        IdCombo = combo;
+        Combos = combos;
         Status = EStatus.Confirmado;
 
         ValidateEntity();
@@ -30,8 +27,16 @@ public class Pedido
 
     private void ValidateEntity()
     {
-        if (IdCombo == Guid.Empty)
-            throw new DomainValidationException(nameof(IdCombo));        
+        if (Combos is null || !Combos.Any())
+            throw new DomainValidationException(nameof(Combos));        
+    }
+
+    public void CalculateTotalPrice()
+    {
+        TotalPrice = Combos.Sum(c => c.CalculatePrice());
+
+        if (TotalPrice <= 0)
+            throw new DomainValidationException(nameof(TotalPrice));
     }
 
     public void Cancel()
