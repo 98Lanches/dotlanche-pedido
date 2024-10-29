@@ -1,7 +1,7 @@
 version: '3.9'
 
 networks:
-  dotLanchesNetwork:
+  dotLanchesPedidoNetwork:
     driver: bridge
 
 services:
@@ -14,13 +14,13 @@ services:
     ports:
     - "27017:27017" 
     networks:
-      - dotLanchesNetwork
+      - dotLanchesPedidoNetwork
 
   api:
     build: 
       context: .
       dockerfile: ./FrameworksAndDrivers/Web/DotLanches.Api/Dockerfile
-    container_name: dotlanches_api
+    container_name: dotlanches_pedido_api
     restart: always
     depends_on:
       - db
@@ -30,4 +30,4 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=mongodb://sudowoodo:P455w0rd@db:27017/?appName=dotlanche
     networks:
-      - dotLanchesNetwork
+      - dotLanchesPedidoNetwork
