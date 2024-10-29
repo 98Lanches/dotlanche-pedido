@@ -8,8 +8,6 @@ namespace DotLanches.Domain.Interfaces.Gateways
 
         Task<Pedido> Update(Pedido pedido);
 
-        Task<int> GetLastQueueKeyNumber();
-
         Task<IEnumerable<Pedido>> GetPedidosQueue();
 
         Task<Pedido?> GetById(Guid id);
