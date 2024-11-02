@@ -19,19 +19,6 @@ namespace DotLanches.Pedido.DataMongo.Repositories
             await _pedidosCollection.InsertOneAsync(pedido);
         }
 
-        public async Task<IEnumerable<Pedido>> GetPedidosQueue()
-        {
-            var queueStatusIds = new[] { EStatus.Pronto, EStatus.EmPreparo, EStatus.Recebido };
-
-            var filter = Builders<Pedido>.Filter.In(p => p.Status, queueStatusIds);
-            var sort = Builders<Pedido>.Sort.Descending(p => p.Status).Ascending(p => p.CreatedAt);
-
-            return await _pedidosCollection
-                .Find(filter)
-                .Sort(sort)
-                .ToListAsync();
-        }
-
         public async Task<Pedido?> GetById(Guid id)
         {
             return await _pedidosCollection

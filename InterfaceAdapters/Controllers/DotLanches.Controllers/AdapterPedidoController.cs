@@ -22,13 +22,6 @@ namespace DotLanches.Pedido.Controllers
             return newPedido.Id;
         }
 
-        public async Task<IEnumerable<Pedido>> GetPedidosQueue()
-        {
-            var pedidoGateway = new PedidoGateway(_pedidoRepository);
-            var pedidoList = await PedidoUseCases.GetPedidosQueue(pedidoGateway);
-            return pedidoList;
-        }
-
         public async Task<Pedido> UpdateStatus(Guid idPedido, EStatus status)
         {
             var pedidoGateway = new PedidoGateway(_pedidoRepository);

@@ -17,18 +17,6 @@ namespace DotLanches.Pedido.Application.UseCases
             return pedido;
         }
 
-        public static async Task<IEnumerable<Pedido>> GetPedidosQueue(IPedidoGateway pedidoGateway)
-        {
-            var pedidos = await pedidoGateway.GetPedidosQueue();
-
-            foreach (var pedido in pedidos)
-            {
-                pedido.CalculateTotalPrice();
-            }
-
-            return pedidos;
-        }
-
         public static async Task<Pedido> UpdateStatusOfSelectedPedido(Guid id, EStatus status, IPedidoGateway pedidoGateway)
         {
             var pedido = await pedidoGateway.GetById(id) ??
