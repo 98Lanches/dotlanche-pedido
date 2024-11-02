@@ -9,7 +9,5 @@ namespace DotLanches.Pedido.Domain.Interfaces.Gateways
         Task<Pedido> Update(Pedido pedido);
 
         Task<Pedido?> GetById(Guid id);
-
-        Task<Pedido> UpdateStatus(Pedido pedido);
     }
 }

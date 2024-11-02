@@ -29,8 +29,8 @@ namespace DotLanches.Pedido.Api.Extensions
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "DotLanches API",
-                    Description = "Backend de gerenciamento LanchesJaamp"
+                    Title = "DotLanches Pedidos API",
+                    Description = "Serviço de criação de pedidos dotlanche"
                 });
 
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

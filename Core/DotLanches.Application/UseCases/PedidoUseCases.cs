@@ -16,18 +16,5 @@ namespace DotLanches.Pedido.Application.UseCases
             await pedidoGateway.Add(pedido);
             return pedido;
         }
-
-        public static async Task<Pedido> UpdateStatusOfSelectedPedido(Guid id, EStatus status, IPedidoGateway pedidoGateway)
-        {
-            var pedido = await pedidoGateway.GetById(id) ??
-                throw new Exception("Non existing pedido!");
-
-            pedido.Status = status;
-
-            var updatedPedido = await pedidoGateway.UpdateStatus(pedido) ??
-                throw new Exception("Pedido not updated!");
-
-            return updatedPedido;
-        }
     }
 }

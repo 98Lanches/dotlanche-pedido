@@ -36,22 +36,5 @@ namespace DotLanches.Pedido.Api.Controllers
 
             return new CreatedResult(string.Empty, new {pedidoId});
         }
-
-        /// <summary>
-        /// Atualiza o status de um pedido existente
-        /// </summary>
-        /// <param name="idPedido">ID do pedido a ser atualizado</param>
-        /// <param name="statusDto">ID do novo status do pedido</param>
-        /// <returns>Pedido atualizado</returns>
-        [HttpPut("{idPedido}")]
-        [ProducesResponseType(typeof(Pedido), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateStatus([FromRoute] Guid idPedido, [Required][FromQuery] StatusDto statusDto)
-        {
-            var adapterPedido = new AdapterPedidoController(_pedidoRepository);
-            var updatedPedido = await adapterPedido.UpdateStatus(idPedido, statusDto.Status);
-            return Ok(updatedPedido);
-        }
     }
 }

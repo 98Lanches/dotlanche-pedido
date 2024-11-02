@@ -8,7 +8,6 @@ public class Pedido
     public Guid Id { get; set; }
     public DateTime CreatedAt { get; set; }
     public string? ClienteCpf { get; set; }
-    public EStatus Status { get; set; }
     public decimal TotalPrice { get; set; }
     public IEnumerable<Combo> Combos { get; set; }
 
@@ -20,7 +19,6 @@ public class Pedido
         CreatedAt = createdAt;
         ClienteCpf = clienteCpf;
         Combos = combos;
-        Status = EStatus.Confirmado;
 
         ValidateEntity();
     }
@@ -38,10 +36,4 @@ public class Pedido
         if (TotalPrice <= 0)
             throw new DomainValidationException(nameof(TotalPrice));
     }
-
-    public void Cancel()
-    {
-        this.Status = EStatus.Cancelado;
-    }
-
 }

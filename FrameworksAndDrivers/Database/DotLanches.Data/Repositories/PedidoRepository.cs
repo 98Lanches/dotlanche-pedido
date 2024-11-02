@@ -36,18 +36,5 @@ namespace DotLanches.Pedido.DataMongo.Repositories
 
             return pedido;
         }
-
-        public async Task<Pedido> UpdateStatus(Pedido pedido)
-        {
-            var filter = Builders<Pedido>.Filter.Eq(p => p.Id, pedido.Id);
-            var update = Builders<Pedido>.Update.Set(p => p.Status, pedido.Status);
-
-            var result = await _pedidosCollection.UpdateOneAsync(filter, update);
-
-            if (result.MatchedCount == 0)
-                throw new EntityNotFoundException();
-
-            return pedido;
-        }
     }
 }
