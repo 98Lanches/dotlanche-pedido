@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{308996C5-6918-4F74-AD96-3A61D75374C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{885753D9-42DF-485D-91D8-697C349DE658}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworksAndDrivers", "FrameworksAndDrivers", "{4FD88553-667A-45F4-B74C-B9D2E4734ABB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterfaceAdapters", "InterfaceAdapters", "{EFACEBE3-5C06-4763-B219-536B46C813B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.UseCases", "src\Core\DotLanches.Pedidos.Application\DotLanches.Pedidos.UseCases.csproj", "{8216C912-DFBB-4209-BED3-2DBB2CEFD97B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.Domain", "src\Core\DotLanches.Pedidos.Domain\DotLanches.Pedidos.Domain.csproj", "{E27265EB-9504-4E76-80EC-E9C9378550EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.DataMongo", "src\FrameworksAndDrivers\Database\DotLanches.Pedidos.Data\DotLanches.Pedidos.DataMongo.csproj", "{7C0F3BFC-89FB-4B11-8C98-41881EE36367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.Api", "src\FrameworksAndDrivers\Web\DotLanches.Pedidos.Api\DotLanches.Pedidos.Api.csproj", "{A1E07D6F-0D99-4571-AC1F-93AE37109753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.Controllers", "src\InterfaceAdapters\Controllers\DotLanches.Pedidos.Controllers\DotLanches.Pedidos.Controllers.csproj", "{AD851491-1A8E-4370-82F1-F33E14849BED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.Gateways", "src\InterfaceAdapters\Gateways\DotLanches.Pedidos.Gateways\DotLanches.Pedidos.Gateways.csproj", "{FE9C46E8-D8A4-4EDA-9B50-5EDE736B01FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.Presenters", "src\InterfaceAdapters\Presenters\DotLanches.Pedidos.Presenters\DotLanches.Pedidos.Presenters.csproj", "{01ED8C0C-652F-47D8-A7CE-5689ACCD769D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8216C912-DFBB-4209-BED3-2DBB2CEFD97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8216C912-DFBB-4209-BED3-2DBB2CEFD97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8216C912-DFBB-4209-BED3-2DBB2CEFD97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8216C912-DFBB-4209-BED3-2DBB2CEFD97B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27265EB-9504-4E76-80EC-E9C9378550EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27265EB-9504-4E76-80EC-E9C9378550EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27265EB-9504-4E76-80EC-E9C9378550EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27265EB-9504-4E76-80EC-E9C9378550EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C0F3BFC-89FB-4B11-8C98-41881EE36367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C0F3BFC-89FB-4B11-8C98-41881EE36367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C0F3BFC-89FB-4B11-8C98-41881EE36367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0F3BFC-89FB-4B11-8C98-41881EE36367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E07D6F-0D99-4571-AC1F-93AE37109753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E07D6F-0D99-4571-AC1F-93AE37109753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E07D6F-0D99-4571-AC1F-93AE37109753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E07D6F-0D99-4571-AC1F-93AE37109753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD851491-1A8E-4370-82F1-F33E14849BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD851491-1A8E-4370-82F1-F33E14849BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD851491-1A8E-4370-82F1-F33E14849BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD851491-1A8E-4370-82F1-F33E14849BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE9C46E8-D8A4-4EDA-9B50-5EDE736B01FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE9C46E8-D8A4-4EDA-9B50-5EDE736B01FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE9C46E8-D8A4-4EDA-9B50-5EDE736B01FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE9C46E8-D8A4-4EDA-9B50-5EDE736B01FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01ED8C0C-652F-47D8-A7CE-5689ACCD769D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01ED8C0C-652F-47D8-A7CE-5689ACCD769D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01ED8C0C-652F-47D8-A7CE-5689ACCD769D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01ED8C0C-652F-47D8-A7CE-5689ACCD769D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{885753D9-42DF-485D-91D8-697C349DE658} = {308996C5-6918-4F74-AD96-3A61D75374C3}
+		{4FD88553-667A-45F4-B74C-B9D2E4734ABB} = {308996C5-6918-4F74-AD96-3A61D75374C3}
+		{EFACEBE3-5C06-4763-B219-536B46C813B2} = {308996C5-6918-4F74-AD96-3A61D75374C3}
+		{8216C912-DFBB-4209-BED3-2DBB2CEFD97B} = {885753D9-42DF-485D-91D8-697C349DE658}
+		{E27265EB-9504-4E76-80EC-E9C9378550EB} = {885753D9-42DF-485D-91D8-697C349DE658}
+		{7C0F3BFC-89FB-4B11-8C98-41881EE36367} = {4FD88553-667A-45F4-B74C-B9D2E4734ABB}
+		{A1E07D6F-0D99-4571-AC1F-93AE37109753} = {4FD88553-667A-45F4-B74C-B9D2E4734ABB}
+		{AD851491-1A8E-4370-82F1-F33E14849BED} = {EFACEBE3-5C06-4763-B219-536B46C813B2}
+		{FE9C46E8-D8A4-4EDA-9B50-5EDE736B01FE} = {EFACEBE3-5C06-4763-B219-536B46C813B2}
+		{01ED8C0C-652F-47D8-A7CE-5689ACCD769D} = {EFACEBE3-5C06-4763-B219-536B46C813B2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07608349-FAA6-4FC2-80E2-748DE9668119}
+	EndGlobalSection
+EndGlobal
