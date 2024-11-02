@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalInterfaces", "Exter
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{18C5DB16-E84F-49ED-B4D8-A895EC13DD82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.Api", "FrameworksAndDrivers\Web\DotLanches.Pedido.Api\DotLanches.Pedido.Api.csproj", "{30902121-1B1F-4B57-9DAA-CD8E3D77B410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.Api", "FrameworksAndDrivers\Web\DotLanches.Pedidos.Api\DotLanches.Pedidos.Api.csproj", "{30902121-1B1F-4B57-9DAA-CD8E3D77B410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
