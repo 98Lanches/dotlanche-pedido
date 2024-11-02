@@ -1,15 +1,15 @@
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 using DotLanches.Pedidos.Domain.Exceptions;
+using DotLanches.Pedidos.Domain.ValueObjects;
 
 namespace DotLanches.Pedidos.Domain.Entities;
 
 public class Pedido
 {
-    public Guid Id { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public string? ClienteCpf { get; set; }
-    public decimal TotalPrice { get; set; }
-    public IEnumerable<Combo> Combos { get; set; }
+    public Guid Id { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public string? ClienteCpf { get; private set; }
+    public decimal TotalPrice => CalculateTotalPrice();
+    public IEnumerable<Combo> Combos { get; private set; }
 
     private Pedido() { }
 
@@ -18,22 +18,22 @@ public class Pedido
         Id = Guid.NewGuid();
         CreatedAt = createdAt;
         ClienteCpf = clienteCpf;
-        Combos = combos;
+        Combos = combos ?? throw new ArgumentNullException(nameof(combos));
 
         ValidateEntity();
     }
 
     private void ValidateEntity()
     {
-        if (Combos is null || !Combos.Any())
-            throw new DomainValidationException(nameof(Combos));        
+        if (!Combos.Any())
+            throw new DomainValidationException("O pedido deve conter pelo menos um combo.");
+        
+        if (TotalPrice <= 0)
+            throw new DomainValidationException("O preço total do pedido deve ser maior que zero.");
     }
 
-    public void CalculateTotalPrice()
+    private decimal CalculateTotalPrice()
     {
-        TotalPrice = Combos.Sum(c => c.CalculatePrice());
-
-        if (TotalPrice <= 0)
-            throw new DomainValidationException(nameof(TotalPrice));
+        return Combos.Sum(c => c.Preco);
     }
 }

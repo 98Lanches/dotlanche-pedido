@@ -1,5 +1,5 @@
 ﻿using DotLanches.Pedidos.Api.Dtos;
-using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.ValueObjects;
 
 namespace DotLanches.Pedidos.Api.Mappers
 {
@@ -7,12 +7,10 @@ namespace DotLanches.Pedidos.Api.Mappers
     {
         public static Combo ToDomainModel(this ComboDto comboDto)
         {
-            var domainModel = new Combo(comboDto.LancheId ?? Guid.Empty,
-                                        comboDto.AcompanhamentoId ?? Guid.Empty,
-                                        comboDto.BebidaId ?? Guid.Empty,
-                                        comboDto.SobremesaId ?? Guid.Empty);
+            if (comboDto.ProdutoId == null || comboDto.Preco == null)
+                throw new ArgumentNullException("ProdutoId e Preco não podem ser nulos");
 
-            return domainModel;
+            return new Combo(comboDto.ProdutoId.Value, comboDto.Preco.Value);
         }
     }
 }

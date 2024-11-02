@@ -5,29 +5,29 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DB69ADEE-8420-43D5-AD58-E5B41C66E37B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.Domain", "Core\DotLanches.Pedido.Domain\DotLanches.Pedido.Domain.csproj", "{A6C2E597-3772-4A02-8B8E-890F4610609E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.Domain", "Core\DotLanches.Pedidos.Domain\DotLanches.Pedidos.Domain.csproj", "{A6C2E597-3772-4A02-8B8E-890F4610609E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.UseCases", "Core\DotLanches.Pedido.Application\DotLanches.Pedido.UseCases.csproj", "{9DD69FCB-1A12-4500-9541-44C4DF562C80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.UseCases", "Core\DotLanches.Pedidos.Application\DotLanches.Pedidos.UseCases.csproj", "{9DD69FCB-1A12-4500-9541-44C4DF562C80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterfaceAdapters", "InterfaceAdapters", "{F7BD496D-EBD8-400C-9B4E-7068E812760D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presenters", "Presenters", "{9D238261-5433-44FE-91B3-A7B9C4150A50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.Presenters", "InterfaceAdapters\Presenters\DotLanches.Pedido.Presenters\DotLanches.Pedido.Presenters.csproj", "{43A8BD3F-9E68-4FEA-A2B3-F0A3DCC1F4FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.Presenters", "InterfaceAdapters\Presenters\DotLanches.Pedidos.Presenters\DotLanches.Pedidos.Presenters.csproj", "{43A8BD3F-9E68-4FEA-A2B3-F0A3DCC1F4FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{51CEF6BD-62D7-4F73-ACC1-2A76C7EBA0E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.Gateways", "InterfaceAdapters\Gateways\DotLanches.Pedido.Gateways\DotLanches.Pedido.Gateways.csproj", "{1DC452D9-A63C-4C57-9ABD-4165B83F72F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.Gateways", "InterfaceAdapters\Gateways\DotLanches.Pedidos.Gateways\DotLanches.Pedidos.Gateways.csproj", "{1DC452D9-A63C-4C57-9ABD-4165B83F72F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{3C158EA5-056C-44BB-AF1E-C2181F0936AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.Controllers", "InterfaceAdapters\Controllers\DotLanches.Pedido.Controllers\DotLanches.Pedido.Controllers.csproj", "{6C95DE0B-30B8-440B-A356-7564BFA65000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.Controllers", "InterfaceAdapters\Controllers\DotLanches.Pedidos.Controllers\DotLanches.Pedidos.Controllers.csproj", "{6C95DE0B-30B8-440B-A356-7564BFA65000}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworksAndDrivers", "FrameworksAndDrivers", "{773A0605-A053-4071-A4D8-1649B34BE461}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{F7DD5375-1045-433F-BE5B-251D01EC4738}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedido.DataMongo", "FrameworksAndDrivers\Database\DotLanches.Pedido.Data\DotLanches.Pedido.DataMongo.csproj", "{C47C82A7-03DD-4008-9FA6-D73D48177374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotLanches.Pedidos.DataMongo", "FrameworksAndDrivers\Database\DotLanches.Pedidos.Data\DotLanches.Pedidos.DataMongo.csproj", "{C47C82A7-03DD-4008-9FA6-D73D48177374}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalInterfaces", "ExternalInterfaces", "{E8179CC5-E4C6-4BE2-A1ED-1202FAF07D5E}"
 EndProject

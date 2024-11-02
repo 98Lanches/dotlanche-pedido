@@ -3,9 +3,7 @@ namespace DotLanches.Pedidos.Api.Dtos
 {
     public class ComboDto
     {
-        public Guid? LancheId { get; set; }
-        public Guid? AcompanhamentoId { get; set; }
-        public Guid? BebidaId { get; set; }
-        public Guid? SobremesaId { get; set; }
+        public Guid? ProdutoId { get; set; }
+        public decimal? Preco { get; set; }
     }
 }
