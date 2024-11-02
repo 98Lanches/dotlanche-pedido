@@ -1,9 +1,9 @@
-﻿using DotLanches.Pedido.Application.UseCases;
-using DotLanches.Pedido.Domain.Entities;
-using DotLanches.Pedido.Domain.Interfaces.Repositories;
-using DotLanches.Pedido.Gateways;
+﻿using DotLanches.Pedidos.Application.UseCases;
+using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.Interfaces.Repositories;
+using DotLanches.Pedidos.Gateways;
 
-namespace DotLanches.Pedido.Controllers
+namespace DotLanches.Pedidos.Controllers
 {
     public class AdapterPedidoController
     {

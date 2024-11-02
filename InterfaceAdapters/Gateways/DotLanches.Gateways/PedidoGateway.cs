@@ -1,8 +1,8 @@
-﻿using DotLanches.Pedido.Domain.Entities;
-using DotLanches.Pedido.Domain.Interfaces.Gateways;
-using DotLanches.Pedido.Domain.Interfaces.Repositories;
+﻿using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.Interfaces.Gateways;
+using DotLanches.Pedidos.Domain.Interfaces.Repositories;
 
-namespace DotLanches.Pedido.Gateways
+namespace DotLanches.Pedidos.Gateways
 {
     public class PedidoGateway : IPedidoGateway
     {

@@ -19,7 +19,7 @@ services:
   api:
     build: 
       context: .
-      dockerfile: ./FrameworksAndDrivers/Web/DotLanches.Pedido.Api/Dockerfile
+      dockerfile: ./FrameworksAndDrivers/Web/DotLanches.Pedidos.Api/Dockerfile
     container_name: dotlanches_pedido_api
     restart: always
     depends_on:
