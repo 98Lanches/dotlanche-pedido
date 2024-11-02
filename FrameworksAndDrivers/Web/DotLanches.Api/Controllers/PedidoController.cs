@@ -1,13 +1,13 @@
-﻿using DotLanches.Api.Dtos;
-using DotLanches.Api.Mappers;
-using DotLanches.Controllers;
-using DotLanches.Domain.Entities;
-using DotLanches.Domain.Interfaces.Repositories;
+﻿using DotLanches.Pedido.Api.Dtos;
+using DotLanches.Pedido.Api.Mappers;
+using DotLanches.Pedido.Controllers;
+using DotLanches.Pedido.Domain.Entities;
+using DotLanches.Pedido.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-namespace DotLanches.Api.Controllers
+namespace DotLanches.Pedido.Api.Controllers
 {
     [Route("[controller]")]
     [Produces("application/json")]

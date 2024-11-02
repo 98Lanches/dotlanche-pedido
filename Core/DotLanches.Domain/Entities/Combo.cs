@@ -1,7 +1,7 @@
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using DotLanches.Domain.Exceptions;
+using DotLanches.Pedido.Domain.Exceptions;
 
-namespace DotLanches.Domain.Entities;
+namespace DotLanches.Pedido.Domain.Entities;
 
 public class Combo
 {

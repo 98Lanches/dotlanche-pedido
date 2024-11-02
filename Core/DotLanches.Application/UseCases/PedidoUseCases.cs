@@ -1,9 +1,9 @@
 #pragma warning disable CS8602 // Desreferência de uma referência possivelmente nula.
 
-using DotLanches.Domain.Entities;
-using DotLanches.Domain.Interfaces.Gateways;
+using DotLanches.Pedido.Domain.Entities;
+using DotLanches.Pedido.Domain.Interfaces.Gateways;
 
-namespace DotLanches.Application.UseCases
+namespace DotLanches.Pedido.Application.UseCases
 {
     public static class PedidoUseCases
     {

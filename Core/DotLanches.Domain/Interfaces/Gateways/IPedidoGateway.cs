@@ -1,6 +1,6 @@
-﻿using DotLanches.Domain.Entities;
+﻿using DotLanches.Pedido.Domain.Entities;
 
-namespace DotLanches.Domain.Interfaces.Gateways
+namespace DotLanches.Pedido.Domain.Interfaces.Gateways
 {
     public interface IPedidoGateway
     {

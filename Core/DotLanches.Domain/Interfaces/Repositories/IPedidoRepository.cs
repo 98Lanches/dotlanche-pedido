@@ -1,6 +1,6 @@
-using DotLanches.Domain.Entities;
+using DotLanches.Pedido.Domain.Entities;
 
-namespace DotLanches.Domain.Interfaces.Repositories
+namespace DotLanches.Pedido.Domain.Interfaces.Repositories
 {
     public interface IPedidoRepository
     {

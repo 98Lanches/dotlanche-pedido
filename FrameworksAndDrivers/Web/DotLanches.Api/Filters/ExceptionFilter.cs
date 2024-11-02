@@ -1,10 +1,10 @@
-﻿using DotLanches.DataMongo.Exceptions;
-using DotLanches.Domain.Exceptions;
-using DotLanches.UseCases.Exceptions;
+﻿using DotLanches.Pedido.DataMongo.Exceptions;
+using DotLanches.Pedido.Domain.Exceptions;
+using DotLanches.Pedido.UseCases.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DotLanches.Api.Filters
+namespace DotLanches.Pedido.Api.Filters
 {
     public class ExceptionFilter : IExceptionHandler
     {

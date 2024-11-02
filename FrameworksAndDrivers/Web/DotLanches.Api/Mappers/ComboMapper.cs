@@ -1,7 +1,7 @@
-﻿using DotLanches.Api.Dtos;
-using DotLanches.Domain.Entities;
+﻿using DotLanches.Pedido.Api.Dtos;
+using DotLanches.Pedido.Domain.Entities;
 
-namespace DotLanches.Api.Mappers
+namespace DotLanches.Pedido.Api.Mappers
 {
     public static class ComboMapper
     {

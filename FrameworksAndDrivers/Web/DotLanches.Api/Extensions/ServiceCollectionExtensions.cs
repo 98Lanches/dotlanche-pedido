@@ -1,9 +1,9 @@
-﻿using DotLanches.Api.Filters;
-using DotLanches.DataMongo.Extensions;
+﻿using DotLanches.Pedido.Api.Filters;
+using DotLanches.Pedido.DataMongo.Extensions;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace DotLanches.Api.Extensions
+namespace DotLanches.Pedido.Api.Extensions
 {
     public static class ServiceCollectionExtensions
     {

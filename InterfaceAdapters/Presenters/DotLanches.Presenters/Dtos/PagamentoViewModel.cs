@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace DotLanches.Presenters.Dtos
+namespace DotLanches.Pedido.Presenters.Dtos
 {
     public class PagamentoViewModel
     {

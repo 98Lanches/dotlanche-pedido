@@ -1,4 +1,4 @@
-﻿namespace DotLanches.UseCases.Exceptions
+﻿namespace DotLanches.Pedido.UseCases.Exceptions
 {
     public class ConflictException : Exception
     {

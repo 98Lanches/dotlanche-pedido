@@ -1,9 +1,9 @@
-﻿using DotLanches.DataMongo.Exceptions;
-using DotLanches.Domain.Entities;
-using DotLanches.Domain.Interfaces.Repositories;
+﻿using DotLanches.Pedido.DataMongo.Exceptions;
+using DotLanches.Pedido.Domain.Entities;
+using DotLanches.Pedido.Domain.Interfaces.Repositories;
 using MongoDB.Driver;
 
-namespace DotLanches.DataMongo.Repositories
+namespace DotLanches.Pedido.DataMongo.Repositories
 {
     internal class PedidoRepository : IPedidoRepository
     {

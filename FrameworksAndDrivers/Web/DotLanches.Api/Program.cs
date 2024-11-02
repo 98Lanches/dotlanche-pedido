@@ -1,4 +1,4 @@
-using DotLanches.Api.Extensions;
+using DotLanches.Pedido.Api.Extensions;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

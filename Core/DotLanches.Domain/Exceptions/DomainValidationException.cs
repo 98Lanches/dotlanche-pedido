@@ -1,4 +1,4 @@
-﻿namespace DotLanches.Domain.Exceptions
+﻿namespace DotLanches.Pedido.Domain.Exceptions
 {
     public class DomainValidationException : Exception
     {

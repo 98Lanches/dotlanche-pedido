@@ -1,5 +1,5 @@
-﻿using DotLanches.DataMongo.Repositories;
-using DotLanches.Domain.Interfaces.Repositories;
+﻿using DotLanches.Pedido.DataMongo.Repositories;
+using DotLanches.Pedido.Domain.Interfaces.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
@@ -8,7 +8,7 @@ using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
-namespace DotLanches.DataMongo.Extensions
+namespace DotLanches.Pedido.DataMongo.Extensions
 {
     public static class ServiceCollectionExtensions
     {

@@ -1,7 +1,7 @@
-﻿using DotLanches.Domain.Entities;
+﻿using DotLanches.Pedido.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotLanches.Api.Dtos
+namespace DotLanches.Pedido.Api.Dtos
 {
     public class StatusDto
     {

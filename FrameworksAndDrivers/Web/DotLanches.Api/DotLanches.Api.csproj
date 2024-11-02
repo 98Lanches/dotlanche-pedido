@@ -17,10 +17,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Core\DotLanches.Application\DotLanches.UseCases.csproj" />
-      <ProjectReference Include="..\..\..\InterfaceAdapters\Controllers\DotLanches.Controllers\DotLanches.Controllers.csproj" />
-      <ProjectReference Include="..\..\Database\DotLanches.Data\DotLanches.DataMongo.csproj" />
-      <ProjectReference Include="..\..\ExternalInterfaces\DotLanches.Payment\DotLanches.Payment.csproj" />
+      <ProjectReference Include="..\..\..\Core\DotLanches.Pedido.Application\DotLanches.Pedido.UseCases.csproj" />
+      <ProjectReference Include="..\..\..\InterfaceAdapters\Controllers\DotLanches.Pedido.Controllers\DotLanches.Pedido.Controllers.csproj" />
+      <ProjectReference Include="..\..\Database\DotLanches.Pedido.Data\DotLanches.Pedido.DataMongo.csproj" />
+      <ProjectReference Include="..\..\ExternalInterfaces\DotLanches.Pedido.Payment\DotLanches.Pedido.Payment.csproj" />
     </ItemGroup>
 
 	<PropertyGroup>
