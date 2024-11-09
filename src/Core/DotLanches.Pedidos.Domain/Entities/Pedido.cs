@@ -11,7 +11,7 @@ public class Pedido
     public decimal TotalPrice => CalculateTotalPrice();
     public IEnumerable<Combo> Combos { get; private set; }
 
-    private Pedido() { }
+    protected Pedido() { }
 
     public Pedido(DateTime createdAt, string? clienteCpf, IEnumerable<Combo> combos)
     {
@@ -32,7 +32,7 @@ public class Pedido
             throw new DomainValidationException("O preço total do pedido deve ser maior que zero.");
     }
 
-    private decimal CalculateTotalPrice()
+    protected virtual decimal CalculateTotalPrice()
     {
         return Combos.Sum(c => c.Preco);
     }

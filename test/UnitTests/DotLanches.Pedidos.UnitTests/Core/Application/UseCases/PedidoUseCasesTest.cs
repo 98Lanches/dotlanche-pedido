@@ -1,6 +1,5 @@
 using Moq;
 using DotLanches.Pedidos.Domain.Entities;
-using DotLanches.Pedidos.Domain.Exceptions;
 using DotLanches.Pedidos.Domain.Interfaces.Gateways;
 using DotLanches.Pedidos.Application.UseCases;
 using DotLanches.Pedidos.Domain.ValueObjects;
