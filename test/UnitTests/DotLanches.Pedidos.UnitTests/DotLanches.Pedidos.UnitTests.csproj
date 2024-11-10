@@ -24,6 +24,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Core\DotLanches.Pedidos.Application\DotLanches.Pedidos.UseCases.csproj" />
+    <ProjectReference Include="..\..\..\src\FrameworksAndDrivers\Database\DotLanches.Pedidos.Data\DotLanches.Pedidos.DataMongo.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\DotLanches.Pedidos.Domain\DotLanches.Pedidos.Domain.csproj" />
   </ItemGroup>
 
 </Project>

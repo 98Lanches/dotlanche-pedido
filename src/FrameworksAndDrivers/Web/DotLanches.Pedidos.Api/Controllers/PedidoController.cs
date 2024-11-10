@@ -1,11 +1,8 @@
 ﻿using DotLanches.Pedidos.Api.Dtos;
 using DotLanches.Pedidos.Api.Mappers;
 using DotLanches.Pedidos.Controllers;
-using DotLanches.Pedidos.Domain.Entities;
 using DotLanches.Pedidos.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Net;
 
 namespace DotLanches.Pedidos.Api.Controllers
 {
