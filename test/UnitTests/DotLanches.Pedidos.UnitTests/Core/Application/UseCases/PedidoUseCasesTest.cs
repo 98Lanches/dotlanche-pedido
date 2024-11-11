@@ -4,7 +4,7 @@ using DotLanches.Pedidos.Domain.Interfaces.Gateways;
 using DotLanches.Pedidos.Application.UseCases;
 using DotLanches.Pedidos.Domain.ValueObjects;
 
-namespace DotLanches.Pedidos.Tests.Application.UseCases
+namespace DotLanches.Pedidos.UnitTests.Core.Application.UseCases
 {
     [TestFixture]
     public class PedidoUseCasesTests

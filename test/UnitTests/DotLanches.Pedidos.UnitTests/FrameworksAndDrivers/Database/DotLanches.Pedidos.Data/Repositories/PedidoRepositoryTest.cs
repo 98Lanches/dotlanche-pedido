@@ -1,10 +1,11 @@
 ﻿using DotLanches.Pedidos.DataMongo.Exceptions;
-using DotLanches.Pedidos.Domain.Entities;
 using DotLanches.Pedidos.DataMongo.Repositories;
+using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.ValueObjects;
 using MongoDB.Driver;
 using Moq;
 
-namespace DotLanches.Pedidos.Tests.DataMongo.Repositories
+namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.Pedidos.Data.Repositories
 {
     [TestFixture]
     public class PedidoRepositoryTests
@@ -27,8 +28,15 @@ namespace DotLanches.Pedidos.Tests.DataMongo.Repositories
         [Test]
         public async Task Add_ShouldInsertPedido()
         {
-            // Arrange
-            var pedido = new Pedido();
+            var combos = new List<Combo>
+            {
+                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
+                new Combo (Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m )
+            };
+            var createdAt = DateTime.Now;
+            var clienteCpf = "12345678900";
+
+            var pedido = new Pedido(createdAt, clienteCpf, combos);
             _mockCollection.Setup(c => c.InsertOneAsync(pedido, null, default))
                            .Returns(Task.CompletedTask);
 
@@ -42,9 +50,15 @@ namespace DotLanches.Pedidos.Tests.DataMongo.Repositories
         [Test]
         public async Task GetById_ShouldReturnPedido_WhenPedidoExists()
         {
-            // Arrange
-            var pedidoId = Guid.NewGuid();
-            var pedido = new Pedido { Id = pedidoId };
+            var combos = new List<Combo>
+            {
+                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
+                new Combo (Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m )
+            };
+            var createdAt = DateTime.Now;
+            var clienteCpf = "12345678900";
+
+            var pedido = new Pedido(createdAt, clienteCpf, combos);
             var mockCursor = new Mock<IAsyncCursor<Pedido>>();
             mockCursor.SetupSequence(c => c.MoveNext(It.IsAny<CancellationToken>()))
                       .Returns(true)
@@ -55,11 +69,11 @@ namespace DotLanches.Pedidos.Tests.DataMongo.Repositories
                            .ReturnsAsync(mockCursor.Object);
 
             // Act
-            var result = await _pedidoRepository.GetById(pedidoId);
+            var result = await _pedidoRepository.GetById(pedido.Id);
 
             // Assert
             Assert.NotNull(result);
-            Assert.AreEqual(pedidoId, result.Id);
+            Assert.AreEqual(pedido.Id, result.Id);
         }
 
         [Test]
@@ -85,10 +99,23 @@ namespace DotLanches.Pedidos.Tests.DataMongo.Repositories
         public async Task Update_ShouldReplacePedido_WhenPedidoExists()
         {
             // Arrange
-            var pedido = new Pedido { Id = Guid.NewGuid() };
+            var combos = new List<Combo>
+            {
+                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m)
+            };
+            var createdAt = DateTime.Now;
+            var clienteCpf = "12345678900";
+            var pedido = new Pedido(createdAt, clienteCpf, combos);
+
             var updateResult = new ReplaceOneResult.Acknowledged(1, 1, pedido.Id);
-            _mockCollection.Setup(c => c.ReplaceOneAsync(It.IsAny<FilterDefinition<Pedido>>(), pedido, null, default))
-                           .ReturnsAsync(updateResult);
+            _mockCollection
+                .Setup(c => c.ReplaceOneAsync(
+                    It.IsAny<FilterDefinition<Pedido>>(),
+                    pedido,
+                    It.IsAny<ReplaceOptions>(),
+                    It.IsAny<CancellationToken>()
+                ))
+                .ReturnsAsync(updateResult);
 
             // Act
             var result = await _pedidoRepository.Update(pedido);
@@ -101,10 +128,24 @@ namespace DotLanches.Pedidos.Tests.DataMongo.Repositories
         public void Update_ShouldThrowEntityNotFoundException_WhenPedidoDoesNotExist()
         {
             // Arrange
-            var pedido = new Pedido { Id = Guid.NewGuid() };
+            var combos = new List<Combo>
+            {
+                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m)
+            };
+            var createdAt = DateTime.Now;
+            var clienteCpf = "12345678900";
+            var pedido = new Pedido(createdAt, clienteCpf, combos);
+
             var updateResult = new ReplaceOneResult.Acknowledged(0, 0, null);
-            _mockCollection.Setup(c => c.ReplaceOneAsync(It.IsAny<FilterDefinition<Pedido>>(), pedido, null, default))
-                           .ReturnsAsync(updateResult);
+            _mockCollection
+                .Setup(c => c.ReplaceOneAsync(
+                    It.IsAny<FilterDefinition<Pedido>>(),
+                    pedido,
+                    It.IsAny<ReplaceOptions>(),
+                    It.IsAny<CancellationToken>()
+                ))
+                .ReturnsAsync(updateResult);
+
 
             // Act & Assert
             Assert.ThrowsAsync<EntityNotFoundException>(() => _pedidoRepository.Update(pedido));

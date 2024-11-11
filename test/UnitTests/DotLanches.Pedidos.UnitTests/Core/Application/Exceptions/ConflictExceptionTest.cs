@@ -1,6 +1,6 @@
 ﻿using DotLanches.Pedidos.UseCases.Exceptions;
 
-namespace DotLanches.Pedidos.UnitTests.UseCases.Exceptions
+namespace DotLanches.Pedidos.UnitTests.Core.Application.Exceptions
 {
     [TestFixture]
     public class ConflictExceptionTests

@@ -1,6 +1,6 @@
 ﻿using DotLanches.Pedidos.Domain.Exceptions;
 
-namespace DotLanches.Pedidos.Tests.Domain.Exceptions
+namespace DotLanches.Pedidos.UnitTests.Core.Domain.Exceptions
 {
     [TestFixture]
     public class DomainValidationExceptionTests

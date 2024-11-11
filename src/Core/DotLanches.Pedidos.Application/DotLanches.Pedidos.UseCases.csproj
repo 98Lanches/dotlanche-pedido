@@ -10,4 +10,8 @@
       <ProjectReference Include="..\DotLanches.Pedidos.Domain\DotLanches.Pedidos.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="DotLanches.Pedidos.UnitTests" />
+    </ItemGroup>
+
 </Project>

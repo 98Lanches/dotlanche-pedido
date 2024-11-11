@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <InternalsVisibleTo>DotLanches.Pedidos.UnitTests</InternalsVisibleTo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +14,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\DotLanches.Pedidos.Domain\DotLanches.Pedidos.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DotLanches.Pedidos.UnitTests" />
   </ItemGroup>
 
 </Project>

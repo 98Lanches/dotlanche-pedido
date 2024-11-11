@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using Moq;
 
-namespace DotLanches.Pedidos.Tests.Extensions
+namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.Pedidos.Data.Extensions
 {
     [TestFixture]
     public class ServiceCollectionExtensionsTests

@@ -1,6 +1,6 @@
 ﻿using DotLanches.Pedidos.DataMongo.Exceptions;
 
-namespace DotLanches.Pedidos.Tests.DataMongo.Exceptions
+namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.Pedidos.Data.Exceptions
 {
     [TestFixture]
     public class EntityNotFoundExceptionTests

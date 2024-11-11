@@ -2,7 +2,7 @@ using DotLanches.Pedidos.Domain.Entities;
 using DotLanches.Pedidos.Domain.Exceptions;
 using DotLanches.Pedidos.Domain.ValueObjects;
 
-namespace DotLanches.Pedidos.Tests.Domain.Entities
+namespace DotLanches.Pedidos.UnitTests.Core.Domain.Entities
 {
     [TestFixture]
     public class PedidoTests : Pedido

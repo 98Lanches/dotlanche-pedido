@@ -1,7 +1,7 @@
 using DotLanches.Pedidos.Domain.Exceptions;
 using DotLanches.Pedidos.Domain.ValueObjects;
 
-namespace DotLanches.Pedidos.Tests.Domain.ValeObjects
+namespace DotLanches.Pedidos.UnitTests.Core.Domain.ValueObjects
 {
     [TestFixture]
     public class ComboTests
