@@ -31,7 +31,7 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
             var combos = new List<Combo>
             {
                 new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
-                new Combo (Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m )
+                new Combo (Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m)
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
@@ -40,65 +40,67 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
             _mockCollection.Setup(c => c.InsertOneAsync(pedido, null, default))
                            .Returns(Task.CompletedTask);
 
-            // Act
             await _pedidoRepository.Add(pedido);
 
-            // Assert
             _mockCollection.Verify(c => c.InsertOneAsync(pedido, null, default), Times.Once);
         }
 
         [Test]
-        public async Task GetById_ShouldReturnPedido_WhenPedidoExists()
+        public async Task GetById_ShouldReturnPedido_WhenPedidoExists_WithAnotherApproach()
         {
+            // Definindo os combos e o pedido a ser retornado
             var combos = new List<Combo>
             {
-                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
-                new Combo (Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m )
+                new Combo(Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
+                new Combo(Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m)
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
-
+    
             var pedido = new Pedido(createdAt, clienteCpf, combos);
             var mockCursor = new Mock<IAsyncCursor<Pedido>>();
-            mockCursor.SetupSequence(c => c.MoveNext(It.IsAny<CancellationToken>()))
-                      .Returns(true)
-                      .Returns(false);
-            mockCursor.SetupGet(c => c.Current).Returns(new[] { pedido });
 
-            _mockCollection.Setup(c => c.FindAsync(It.IsAny<FilterDefinition<Pedido>>(), null, default))
-                           .ReturnsAsync(mockCursor.Object);
+            mockCursor.Setup(c => c.MoveNext(It.IsAny<CancellationToken>())).Returns(true);  // Um movimento para o próximo item
+            mockCursor.Setup(c => c.Current).Returns(new List<Pedido> { pedido });  // Definir que o pedido será retornado
 
-            // Act
+            // Configurar o mock da coleção para retornar o mock do cursor
+            _mockCollection
+                .Setup(c => c.FindAsync(It.IsAny<FilterDefinition<Pedido>>(),
+                    It.IsAny<FindOptions<Pedido>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockCursor.Object);
+
+            // Chama o método GetById no repositório, buscando o pedido
             var result = await _pedidoRepository.GetById(pedido.Id);
-
-            // Assert
+            
             Assert.NotNull(result);
             Assert.AreEqual(pedido.Id, result.Id);
+            Assert.AreEqual(clienteCpf, result.ClienteCpf);  // Verifica se o CPF do cliente também é o esperado
         }
+
 
         [Test]
         public async Task GetById_ShouldReturnNull_WhenPedidoDoesNotExist()
         {
-            // Arrange
             var pedidoId = Guid.NewGuid();
             var mockCursor = new Mock<IAsyncCursor<Pedido>>();
+
             mockCursor.SetupSequence(c => c.MoveNext(It.IsAny<CancellationToken>()))
-                      .Returns(false);
+                .Returns(false);
+            mockCursor.Setup(c => c.Current).Returns(Enumerable.Empty<Pedido>());
+            
+            _mockCollection
+                .Setup(c => c.FindAsync(It.IsAny<FilterDefinition<Pedido>>(), It.IsAny<FindOptions<Pedido>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockCursor.Object);
 
-            _mockCollection.Setup(c => c.FindAsync(It.IsAny<FilterDefinition<Pedido>>(), null, default))
-                           .ReturnsAsync(mockCursor.Object);
-
-            // Act
             var result = await _pedidoRepository.GetById(pedidoId);
 
-            // Assert
             Assert.IsNull(result);
         }
 
         [Test]
         public async Task Update_ShouldReplacePedido_WhenPedidoExists()
         {
-            // Arrange
             var combos = new List<Combo>
             {
                 new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m)
@@ -117,17 +119,14 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
                 ))
                 .ReturnsAsync(updateResult);
 
-            // Act
             var result = await _pedidoRepository.Update(pedido);
 
-            // Assert
             Assert.AreEqual(pedido, result);
         }
 
         [Test]
         public void Update_ShouldThrowEntityNotFoundException_WhenPedidoDoesNotExist()
         {
-            // Arrange
             var combos = new List<Combo>
             {
                 new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m)
@@ -146,8 +145,6 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
                 ))
                 .ReturnsAsync(updateResult);
 
-
-            // Act & Assert
             Assert.ThrowsAsync<EntityNotFoundException>(() => _pedidoRepository.Update(pedido));
         }
     }

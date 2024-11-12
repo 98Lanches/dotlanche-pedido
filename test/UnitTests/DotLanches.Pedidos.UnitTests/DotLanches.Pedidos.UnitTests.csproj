@@ -26,6 +26,22 @@
     <ProjectReference Include="..\..\..\src\Core\DotLanches.Pedidos.Application\DotLanches.Pedidos.UseCases.csproj" />
     <ProjectReference Include="..\..\..\src\FrameworksAndDrivers\Database\DotLanches.Pedidos.Data\DotLanches.Pedidos.DataMongo.csproj" />
     <ProjectReference Include="..\..\..\src\Core\DotLanches.Pedidos.Domain\DotLanches.Pedidos.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\FrameworksAndDrivers\Web\DotLanches.Pedidos.Api\DotLanches.Pedidos.Api.csproj" />
+    <ProjectReference Include="..\..\..\src\InterfaceAdapters\Controllers\DotLanches.Pedidos.Controllers\DotLanches.Pedidos.Controllers.csproj" />
+    <ProjectReference Include="..\..\..\src\InterfaceAdapters\Gateways\DotLanches.Pedidos.Gateways\DotLanches.Pedidos.Gateways.csproj" />
+    <ProjectReference Include="..\..\..\src\InterfaceAdapters\Presenters\DotLanches.Pedidos.Presenters\DotLanches.Pedidos.Presenters.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="FrameworksAndDrivers\Web\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="FrameworksAndDrivers\Web\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="FrameworksAndDrivers\Web\**" />
   </ItemGroup>
 
 </Project>
