@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace DotLanches.Pedidos.DataMongo.Repositories
 {
-    internal class PedidoRepository : IPedidoRepository
+    public class PedidoRepository : IPedidoRepository
     {
         private readonly IMongoCollection<Pedido> _pedidosCollection;
 
