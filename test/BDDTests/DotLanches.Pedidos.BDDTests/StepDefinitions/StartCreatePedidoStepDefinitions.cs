@@ -2,7 +2,9 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using DotLanches.Pedidos.Api.Dtos;
 using DotLanches.Pedidos.BDDTests.Setup;
+using DotLanches.Pedidos.Domain.Entities;
 using NUnit.Framework;
 using Reqnroll;
 namespace DotLanches.Pedidos.BDDTests.StepDefinitions;
@@ -33,22 +35,18 @@ public class StartCreatePedidoStepDefinitions
         Assert.NotNull(_apiFactory);
     }
 
-    [Given(@"que o endpoint ""(.*)"" está disponível")]
-    public async Task GivenQueOEndpointEstaDisponivel(string endpoint)
-    {
-        var request = new HttpRequestMessage(HttpMethod.Options, endpoint);
-        _response = await _apiClient.SendAsync(request);
-
-        if (_response.StatusCode != HttpStatusCode.OK)
-        {
-            throw new Exception($"Endpoint {endpoint} não está disponível. Status code: {_response.StatusCode}");
-        }
-    }
-
     [Given(@"que o payload do pedido é válido")]
     public void GivenQueOPayloadDoPedidoEValido(Table table)
     {
-        _payload = table.CreateInstance<object>();
+        _payload = new PedidoDto()
+        {
+            ClienteCpf = table.Rows[0]["ClienteCpf"],
+            Combos = table.Rows.Select(r => new ComboDto()
+            {
+                ProdutoId = Guid.Parse(r["ProdutoId"]),
+                Preco = decimal.Parse(r["Preco"])
+            }).ToList()
+        };
     }
 
     [When(@"envio uma requisição POST para ""(.*)"" com o payload")]
@@ -65,7 +63,7 @@ public class StartCreatePedidoStepDefinitions
     [Then(@"a resposta deve ter o status (.*) Created")]
     public void ThenARespostaDeveTerOStatusCreated(int expectedStatusCode)
     {
-        Assert.Equals(expectedStatusCode, (int)_response.StatusCode);
+        Assert.That((int)_response.StatusCode, Is.EqualTo(expectedStatusCode));
     }
 
     [Then(@"a resposta deve conter o ID do pedido criado")]
