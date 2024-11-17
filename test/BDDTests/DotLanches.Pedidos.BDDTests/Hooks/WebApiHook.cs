@@ -9,7 +9,7 @@ public class WebApiHook
     [BeforeFeature]
     public static void BeforeFeature(FeatureContext featureContext) 
     {
-        var webApi = new PedidoApi();
+        var webApi = new WebApiFactory();
         featureContext.FeatureContainer.RegisterInstanceAs(webApi, dispose: true);
     }
 }

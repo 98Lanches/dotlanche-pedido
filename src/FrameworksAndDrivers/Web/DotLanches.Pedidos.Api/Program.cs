@@ -1,26 +1,41 @@
 using DotLanches.Pedidos.Api.Extensions;
 using System.Text.Json.Serialization;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.ConfigureApplicationServices(builder.Configuration);
-
-builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+namespace DotLanches.Pedidos.Api
 {
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});
+    public class Program
+    {
+        public static WebApplication CreateApp(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpLogging(logging =>
-{
-});
+            builder.Services.ConfigureApplicationServices(builder.Configuration);
 
-var app = builder.Build();
+            builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
-app.MapHealthChecks("/health");
+            builder.Services.AddHttpLogging(logging =>
+            {
+            });
 
-app.UseHttpLogging();
-app.UseSwagger();
-app.UseSwaggerUI();
-app.MapControllers();
-app.UseExceptionHandler();
+            var app = builder.Build();
 
-app.Run();
+            app.MapHealthChecks("/health");
+            app.UseHttpLogging();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            app.MapControllers();
+            app.UseExceptionHandler();
+
+            return app;
+        }
+
+        public static void Main(string[] args)
+        {
+            var app = CreateApp(args);
+            app.Run();
+        }
+    }
+}
