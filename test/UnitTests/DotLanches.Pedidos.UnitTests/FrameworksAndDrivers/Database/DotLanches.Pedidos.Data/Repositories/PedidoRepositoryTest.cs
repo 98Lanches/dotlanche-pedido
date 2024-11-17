@@ -46,40 +46,6 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
         }
 
         [Test]
-        public async Task GetById_ShouldReturnPedido_WhenPedidoExists_WithAnotherApproach()
-        {
-            // Definindo os combos e o pedido a ser retornado
-            var combos = new List<Combo>
-            {
-                new Combo(Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
-                new Combo(Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m)
-            };
-            var createdAt = DateTime.Now;
-            var clienteCpf = "12345678900";
-    
-            var pedido = new Pedido(createdAt, clienteCpf, combos);
-            var mockCursor = new Mock<IAsyncCursor<Pedido>>();
-
-            mockCursor.Setup(c => c.MoveNext(It.IsAny<CancellationToken>())).Returns(true);  // Um movimento para o próximo item
-            mockCursor.Setup(c => c.Current).Returns(new List<Pedido> { pedido });  // Definir que o pedido será retornado
-
-            // Configurar o mock da coleção para retornar o mock do cursor
-            _mockCollection
-                .Setup(c => c.FindAsync(It.IsAny<FilterDefinition<Pedido>>(),
-                    It.IsAny<FindOptions<Pedido>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(mockCursor.Object);
-
-            // Chama o método GetById no repositório, buscando o pedido
-            var result = await _pedidoRepository.GetById(pedido.Id);
-            
-            Assert.NotNull(result);
-            Assert.AreEqual(pedido.Id, result.Id);
-            Assert.AreEqual(clienteCpf, result.ClienteCpf);  // Verifica se o CPF do cliente também é o esperado
-        }
-
-
-        [Test]
         public async Task GetById_ShouldReturnNull_WhenPedidoDoesNotExist()
         {
             var pedidoId = Guid.NewGuid();
