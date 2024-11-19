@@ -43,5 +43,11 @@ namespace DotLanches.Pedidos.BDDTests.Setup
 
             return services;
         }
+        
+        protected override void Dispose(bool disposing)
+        {
+            mongoRunner?.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
