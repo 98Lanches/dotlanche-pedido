@@ -3,7 +3,7 @@ namespace DotLanches.Pedidos.Api.Dtos
 {
     public class ComboDto
     {
-        public Guid? ProdutoId { get; set; }
-        public decimal? Preco { get; set; }
+        public IEnumerable<Guid> IdsProduto { get; set; } = new List<Guid>();
+        public decimal PrecoTotal { get; set; }
     }
 }

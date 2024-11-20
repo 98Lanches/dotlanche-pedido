@@ -43,8 +43,8 @@ public class StartCreatePedidoStepDefinitions
             ClienteCpf = table.Rows[0]["ClienteCpf"],
             Combos = table.Rows.Select(r => new ComboDto()
             {
-                ProdutoId = Guid.Parse(r["ProdutoId"]),
-                Preco = decimal.Parse(r["Preco"])
+                IdsProduto = new List<Guid> { Guid.Parse(r["ProdutoId"]) },
+                PrecoTotal = decimal.Parse(r["Preco"])
             }).ToList()
         };
     }

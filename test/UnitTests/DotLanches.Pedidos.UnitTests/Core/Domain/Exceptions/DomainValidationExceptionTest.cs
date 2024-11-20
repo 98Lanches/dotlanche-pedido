@@ -2,7 +2,6 @@
 
 namespace DotLanches.Pedidos.UnitTests.Core.Domain.Exceptions
 {
-    [TestFixture]
     public class DomainValidationExceptionTests
     {
         [Test]

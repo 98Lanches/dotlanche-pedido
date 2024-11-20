@@ -2,7 +2,6 @@
 
 namespace DotLanches.Pedidos.UnitTests.Core.Application.Exceptions
 {
-    [TestFixture]
     public class ConflictExceptionTests
     {
         [Test]

@@ -6,7 +6,6 @@ using DotLanches.Pedidos.Domain.ValueObjects;
 
 namespace DotLanches.Pedidos.UnitTests.Core.Application.UseCases
 {
-    [TestFixture]
     public class PedidoUseCasesTests
     {
         private Mock<IPedidoGateway> _pedidoGatewayMock;
@@ -20,7 +19,7 @@ namespace DotLanches.Pedidos.UnitTests.Core.Application.UseCases
         [Test]
         public async Task Create_ValidPedido_ReturnsPedido()
         {
-            var combos = new List<Combo> { new Combo(Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 12) };
+            var combos = new List<Combo> { new Combo(new List<Guid> { Guid.Parse("01234567-89ab-cdef-0123-456789abcdef") }, 12) };
             var pedido = new Pedido(DateTime.Now, "12345678901", combos);
             _pedidoGatewayMock.Setup(pg => pg.Add(It.IsAny<Pedido>())).Returns(Task.CompletedTask);
 

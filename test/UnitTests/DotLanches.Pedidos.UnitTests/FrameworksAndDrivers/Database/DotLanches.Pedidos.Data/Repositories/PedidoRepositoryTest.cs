@@ -7,7 +7,6 @@ using Moq;
 
 namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.Pedidos.Data.Repositories
 {
-    [TestFixture]
     public class PedidoRepositoryTests
     {
         private Mock<IMongoDatabase> _mockDatabase;
@@ -30,8 +29,8 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
         {
             var combos = new List<Combo>
             {
-                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m),
-                new Combo (Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee"), 20.00m)
+                new Combo (new List<Guid> { Guid.Parse("01234567-89ab-cdef-0123-456789abcdef") }, 10.00m),
+                new Combo (new List<Guid> {Guid.Parse("03234567-89ab-c2ef-0123-456789abcdee") }, 20.00m)
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
@@ -69,7 +68,7 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
         {
             var combos = new List<Combo>
             {
-                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m)
+                new Combo (new List<Guid> { Guid.Parse("01234567-89ab-cdef-0123-456789abcdef") }, 10.00m)
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
@@ -95,7 +94,7 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
         {
             var combos = new List<Combo>
             {
-                new Combo (Guid.Parse("01234567-89ab-cdef-0123-456789abcdef"), 10.00m)
+                new Combo (new List<Guid> { Guid.Parse("01234567-89ab-cdef-0123-456789abcdef") }, 10.00m)
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
