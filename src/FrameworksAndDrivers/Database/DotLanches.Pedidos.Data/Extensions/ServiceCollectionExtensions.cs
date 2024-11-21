@@ -13,6 +13,7 @@ namespace DotLanches.Pedidos.DataMongo.Extensions
     public static class ServiceCollectionExtensions
     {
         private const string DATABASE_NAME = "dotlanche";
+        private static bool _conventionsRegistered;
 
         public static IServiceCollection ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
@@ -28,6 +29,9 @@ namespace DotLanches.Pedidos.DataMongo.Extensions
 
         private static void RegisterConventions()
         {
+            if (_conventionsRegistered)
+                return;
+
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
             var pack = new ConventionPack
@@ -35,6 +39,8 @@ namespace DotLanches.Pedidos.DataMongo.Extensions
                 new EnumRepresentationConvention(BsonType.String),
             };
             ConventionRegistry.Register("DotlancheConventions", pack, t => true);
+
+            _conventionsRegistered = true;
         }
     }
 }

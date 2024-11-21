@@ -11,7 +11,7 @@ public class Pedido
     public decimal TotalPrice => CalculateTotalPrice();
     public IEnumerable<Combo> Combos { get; private set; }
 
-    private Pedido() { }
+    protected Pedido() { }
 
     public Pedido(DateTime createdAt, string? clienteCpf, IEnumerable<Combo> combos)
     {
@@ -26,14 +26,11 @@ public class Pedido
     private void ValidateEntity()
     {
         if (!Combos.Any())
-            throw new DomainValidationException("O pedido deve conter pelo menos um combo.");
-        
-        if (TotalPrice <= 0)
-            throw new DomainValidationException("O preço total do pedido deve ser maior que zero.");
+            throw new DomainValidationException("O pedido deve conter pelo menos um combo");
     }
 
-    private decimal CalculateTotalPrice()
+    protected virtual decimal CalculateTotalPrice()
     {
-        return Combos.Sum(c => c.Preco);
+        return Combos.Sum(c => c.PrecoTotal);
     }
 }

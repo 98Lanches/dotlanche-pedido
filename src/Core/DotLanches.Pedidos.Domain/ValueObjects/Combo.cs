@@ -4,18 +4,21 @@ namespace DotLanches.Pedidos.Domain.ValueObjects;
 
 public class Combo
 {
-    public Guid IdProduto { get; }
-    public decimal Preco { get; }
+    public IEnumerable<Guid> IdsProduto { get; }
+    public decimal PrecoTotal { get; }
 
-    public Combo(Guid idProduto, decimal preco)
+    public Combo(IEnumerable<Guid> idsProduto, decimal precoTotal)
     {
-        if (idProduto == Guid.Empty)
-            throw new DomainValidationException(nameof(idProduto));
-        
-        if (preco <= 0)
-            throw new DomainValidationException(nameof(preco));
+        if (idsProduto == null || !idsProduto.Any() || idsProduto.Contains(Guid.Empty))
+            throw new DomainValidationException(nameof(idsProduto));
 
-        IdProduto = idProduto;
-        Preco = preco;
+        if (idsProduto.Count() > 4)
+            throw new DomainValidationException(nameof(idsProduto));
+
+        if (precoTotal <= 0)
+            throw new DomainValidationException(nameof(precoTotal));
+
+        IdsProduto = idsProduto;
+        PrecoTotal = precoTotal;
     }
 }

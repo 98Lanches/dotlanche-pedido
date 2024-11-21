@@ -7,10 +7,13 @@ namespace DotLanches.Pedidos.Api.Mappers
     {
         public static Combo ToDomainModel(this ComboDto comboDto)
         {
-            if (comboDto.ProdutoId == null || comboDto.Preco == null)
-                throw new ArgumentNullException("ProdutoId and Preco can`t be null");
+            if (comboDto.IdsProduto == null || !comboDto.IdsProduto.Any())
+                throw new ArgumentNullException("IdsProduto cannot be null or empty");
 
-            return new Combo(comboDto.ProdutoId.Value, comboDto.Preco.Value);
+            if (comboDto.PrecoTotal <= 0)
+                throw new ArgumentOutOfRangeException("PrecoTotal must be greater than zero");
+
+            return new Combo(comboDto.IdsProduto, comboDto.PrecoTotal);
         }
     }
 }
