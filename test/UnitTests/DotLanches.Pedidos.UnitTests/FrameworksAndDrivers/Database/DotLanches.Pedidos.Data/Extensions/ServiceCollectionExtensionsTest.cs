@@ -9,7 +9,6 @@ using Moq;
 
 namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.Pedidos.Data.Extensions
 {
-    [TestFixture]
     public class ServiceCollectionExtensionsTests
     {
         private Mock<IConfiguration> _configurationMock;

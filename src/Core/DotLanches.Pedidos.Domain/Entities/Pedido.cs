@@ -26,14 +26,11 @@ public class Pedido
     private void ValidateEntity()
     {
         if (!Combos.Any())
-            throw new DomainValidationException("O pedido deve conter pelo menos um combo.");
-        
-        if (TotalPrice <= 0)
-            throw new DomainValidationException("O preço total do pedido deve ser maior que zero.");
+            throw new DomainValidationException("O pedido deve conter pelo menos um combo");
     }
 
     protected virtual decimal CalculateTotalPrice()
     {
-        return Combos.Sum(c => c.Preco);
+        return Combos.Sum(c => c.PrecoTotal);
     }
 }
