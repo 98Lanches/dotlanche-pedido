@@ -74,5 +74,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./src/FrameworksAndDrivers/Web/DotLanches.Pedidos.Api/DotLanches.Pedidos.Api.csproj
+          file: ./src/FrameworksAndDrivers/Web/DotLanches.Pedidos.Api/Dockerfile
           push: false
