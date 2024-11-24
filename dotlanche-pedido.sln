@@ -53,6 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mockFiles", "mockFiles", "{
 	ProjectSection(SolutionItems) = preProject
 		mockFiles\imposters.ejs = mockFiles\imposters.ejs
 		mockFiles\pagamentos_service.ejs = mockFiles\pagamentos_service.ejs
+		mockFiles\producao_service.ejs = mockFiles\producao_service.ejs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".kubernetes", ".kubernetes", "{AA5E9DEF-B9EE-400F-8528-6158E032DECE}"
