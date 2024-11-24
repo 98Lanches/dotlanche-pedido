@@ -1,5 +1,6 @@
 ﻿using DotLanches.Pedidos.Api.Filters;
 using DotLanches.Pedidos.DataMongo.Extensions;
+using DotLanches.Pedidos.PagamentoServiceClient.Extensions;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -13,6 +14,8 @@ namespace DotLanches.Pedidos.Api.Extensions
             services.ConfigureSwagger();
 
             services.ConfigureDatabase(configuration);
+            services.AddPagamentoServiceIntegration(configuration);
+
             services.AddExceptionHandler<ExceptionFilter>();
             services.AddProblemDetails();
 

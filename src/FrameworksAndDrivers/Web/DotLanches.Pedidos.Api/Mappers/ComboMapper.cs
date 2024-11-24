@@ -1,5 +1,5 @@
-﻿using DotLanches.Pedidos.Api.Dtos;
-using DotLanches.Pedidos.Domain.ValueObjects;
+﻿using DotLanches.Pedidos.Domain.ValueObjects;
+using DotLanches.Pedidos.Presenters.Dtos;
 
 namespace DotLanches.Pedidos.Api.Mappers
 {

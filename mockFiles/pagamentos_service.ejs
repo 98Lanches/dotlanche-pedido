@@ -1,0 +1,34 @@
+﻿{
+  "port": 8002,
+  "protocol": "http",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/pagamentos"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            "body": "{\"operationSuccessful\":true,\"registroPagamentoId\":\"44b71123-52df-4318-8ac5-16e057181b9d\",\"pedidoId\":\"8af14f25-d209-4b2b-b5ab-458f0b5913b1\",\"isAccepted\":false,\"registeredTime\":\"2024-11-24T15:42:07.1163249-03:00\",\"providerData\":{\"QR_CODE_IMG\":\"iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKAQAAAABTUiuoAAABcElEQVR4nO2ZS67DIAwAkXqAHKlXz5F6gEp5+Ifb9DXqzl4MizaBYTOWiYFx/Nr2AYoBDGAAAxjoYWB4u83nh/wczzHuj+i+g7YyoC9CjbEJpX02KUZB+xiQIOrYvumYBlZmzmCDdjXgMY3AgjY3YE/xCtrRQCyaMw2f0udpeLW+glYZWAVJRDdCfFG7gBYZyObJF1XJSwNtY0CSzwJrP5uO+STQZgZ0lbTurCFXSQnayoBF8tCxOSnjbNu19/UVtIOB5GN/FrkI2srA/J+ABTY/cfZ0Kh9Byw1E8eEZmMnnuQjaysCKpKF7ZqVu0kBbGfC6Q2MqH7fk/zkhAS03kEdTsnyeNtegnQxk09G3RfP7sQdojYEMoubi5eUKaLmBvLh8vQ9b3z7QXgbOdX6E+uOQCrSVATuzX+jFrRlotQHbUksa2kmVLZ+gvQysRXPdh/lR8EdBAlpuIAuS3JCtaxbQXgZ+aaAYwAAGMICBegN/TnpNNQzdElMAAAAASUVORK5CYII=\"}}"
+          }
+        }
+      ]
+    },
+    {
+      "responses": [
+        {
+          "is": { "statusCode": 404 }
+        }
+      ]
+    }
+  ]
+}

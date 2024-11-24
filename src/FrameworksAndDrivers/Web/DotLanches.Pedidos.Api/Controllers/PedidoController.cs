@@ -1,7 +1,8 @@
-﻿using DotLanches.Pedidos.Api.Dtos;
-using DotLanches.Pedidos.Api.Mappers;
+﻿using DotLanches.Pedidos.Api.Mappers;
 using DotLanches.Pedidos.Controllers;
+using DotLanches.Pedidos.Domain.Interfaces.Clients;
 using DotLanches.Pedidos.Domain.Interfaces.Repositories;
+using DotLanches.Pedidos.Presenters.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotLanches.Pedidos.Api.Controllers
@@ -12,10 +13,12 @@ namespace DotLanches.Pedidos.Api.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly IPedidoRepository _pedidoRepository;
+        private readonly IPagamentoServiceClient _pagamentoServiceClient;
 
-        public PedidoController(IPedidoRepository pedidoRepository)
+        public PedidoController(IPedidoRepository pedidoRepository, IPagamentoServiceClient pagamentoServiceClient)
         {
             _pedidoRepository = pedidoRepository;
+            _pagamentoServiceClient = pagamentoServiceClient;
         }
 
         /// <summary>
@@ -26,12 +29,14 @@ namespace DotLanches.Pedidos.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create([FromBody] PedidoDto pedidoDto)
+        public async Task<IActionResult> Create([FromBody] CreatePedidoRequest pedidoDto)
         {
-            var adapterPedido = new AdapterPedidoController( _pedidoRepository);
-            var pedidoId = await adapterPedido.Create(pedidoDto.ToDomainModel());
+            var adapterPedido = new AdapterPedidoController(_pedidoRepository, _pagamentoServiceClient);
+            var newPedido = await adapterPedido.Create(pedidoDto.ToDomainModel());
 
-            return new CreatedResult(string.Empty, new {pedidoId});
+            var response = newPedido.ToResponse();
+
+            return new CreatedResult(string.Empty, response);
         }
     }
 }

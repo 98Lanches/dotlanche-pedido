@@ -43,6 +43,8 @@ spec:
               value: Production
             - name: MongoDb__DatabaseName
               value: dotlanche-pedido
+            - name: Integrations__PagamentoService__BaseAddress
+              value: http://dotlanche-pagamento-svc
             - name: ConnectionStrings__DefaultConnection
               valueFrom:
                 secretKeyRef: 

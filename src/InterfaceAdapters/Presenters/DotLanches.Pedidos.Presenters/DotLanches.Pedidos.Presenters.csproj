@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\ComboDto.cs" />
-    <Compile Remove="Dtos\PedidoDto.cs" />
     <Compile Remove="Presenter\ComboMapper.cs" />
     <Compile Remove="Presenter\PedidoMapper.cs" />
   </ItemGroup>

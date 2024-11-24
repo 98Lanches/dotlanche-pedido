@@ -1,6 +1,7 @@
 ﻿using DotLanches.Pedidos.DataMongo.Exceptions;
 using DotLanches.Pedidos.DataMongo.Repositories;
 using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.Enums;
 using DotLanches.Pedidos.Domain.ValueObjects;
 using MongoDB.Driver;
 using Moq;
@@ -35,7 +36,7 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
 
-            var pedido = new Pedido(createdAt, clienteCpf, combos);
+            var pedido = new Pedido(createdAt, clienteCpf, combos, TipoPagamento.QrCode);
             _mockCollection.Setup(c => c.InsertOneAsync(pedido, null, default))
                            .Returns(Task.CompletedTask);
 
@@ -72,7 +73,7 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
-            var pedido = new Pedido(createdAt, clienteCpf, combos);
+            var pedido = new Pedido(createdAt, clienteCpf, combos, TipoPagamento.QrCode);
 
             var updateResult = new ReplaceOneResult.Acknowledged(1, 1, pedido.Id);
             _mockCollection
@@ -98,7 +99,7 @@ namespace DotLanches.Pedidos.UnitTests.FrameworksAndDrivers.Database.DotLanches.
             };
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
-            var pedido = new Pedido(createdAt, clienteCpf, combos);
+            var pedido = new Pedido(createdAt, clienteCpf, combos, TipoPagamento.QrCode);
 
             var updateResult = new ReplaceOneResult.Acknowledged(0, 0, null);
             _mockCollection
