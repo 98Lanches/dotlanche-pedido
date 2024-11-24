@@ -23,7 +23,7 @@ namespace DotLanches.Pedidos.Controllers
 
         public async Task<Pedido> Create(Pedido pedido)
         {
-            var pedidoGateway = new PedidoGateway(_pedidoRepository);
+            var pedidoGateway = new DatabaseGateway(_pedidoRepository);
             var pagamentoGateway = new PagamentoGateway(_pagamentoServiceClient);
 
             var newPedido = await PedidoUseCases.Create(pedido, pedidoGateway, pagamentoGateway);
@@ -33,14 +33,14 @@ namespace DotLanches.Pedidos.Controllers
 
         public async Task<Pedido?> GetById(Guid pedidoId)
         {
-            var pedidoGateway = new PedidoGateway(_pedidoRepository);
+            var pedidoGateway = new DatabaseGateway(_pedidoRepository);
 
             return await PedidoUseCases.GetById(pedidoId, pedidoGateway);
         }
 
         public async Task RegisterPagamentoForPedido(Guid pedidoId, Guid registroPagamentoId)
         {
-            var pedidoGateway = new PedidoGateway(_pedidoRepository);
+            var pedidoGateway = new DatabaseGateway(_pedidoRepository);
             var producaoGateway = new ProducaoGateway(_producaoServiceClient);
 
             await PedidoUseCases.RegisterPagamentoForPedido(pedidoId, registroPagamentoId, pedidoGateway, producaoGateway);

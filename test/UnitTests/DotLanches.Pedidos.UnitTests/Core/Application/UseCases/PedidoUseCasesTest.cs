@@ -9,13 +9,13 @@ namespace DotLanches.Pedidos.UnitTests.Core.Application.UseCases
 {
     public class PedidoUseCasesTests
     {
-        private Mock<IPedidoGateway> _pedidoGatewayMock;
+        private Mock<IDatabaseGateway> _pedidoGatewayMock;
         private Mock<IPagamentoGateway> _pagamentoGatewayMock;
 
         [SetUp]
         public void SetUp()
         {
-            _pedidoGatewayMock = new Mock<IPedidoGateway>();
+            _pedidoGatewayMock = new Mock<IDatabaseGateway>();
             _pagamentoGatewayMock = new Mock<IPagamentoGateway>();
         }
 

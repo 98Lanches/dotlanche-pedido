@@ -6,7 +6,7 @@ namespace DotLanches.Pedidos.Application.UseCases
 {
     public static class PedidoUseCases
     {
-        public static async Task<Pedido> Create(Pedido pedido, IPedidoGateway pedidoGateway, IPagamentoGateway pagamentoGateway)
+        public static async Task<Pedido> Create(Pedido pedido, IDatabaseGateway pedidoGateway, IPagamentoGateway pagamentoGateway)
         {
             ArgumentNullException.ThrowIfNull(pedido);
 
@@ -18,12 +18,12 @@ namespace DotLanches.Pedidos.Application.UseCases
             return pedido;
         }
 
-        public static async Task<Pedido?> GetById(Guid idPedido, IPedidoGateway pedidoGateway)
+        public static async Task<Pedido?> GetById(Guid idPedido, IDatabaseGateway pedidoGateway)
         {
             return await pedidoGateway.GetById(idPedido);
         }
 
-        public static async Task RegisterPagamentoForPedido(Guid idPedido, Guid idRegistroPagamento, IPedidoGateway pedidoGateway, IProducaoGateway producaoGateway)
+        public static async Task RegisterPagamentoForPedido(Guid idPedido, Guid idRegistroPagamento, IDatabaseGateway pedidoGateway, IProducaoGateway producaoGateway)
         {
             var pedido = await pedidoGateway.GetById(idPedido) ??
                 throw new UseCaseException($"pedido {idPedido} was not found!");
