@@ -10,11 +10,15 @@ namespace DotLanches.Pedidos.Controllers
     {
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IPagamentoServiceClient _pagamentoServiceClient;
+        private readonly IProducaoServiceClient _producaoServiceClient;
 
-        public AdapterPedidoController(IPedidoRepository pedidoRepository, IPagamentoServiceClient pagamentoServiceClient)
+        public AdapterPedidoController(IPedidoRepository pedidoRepository,
+                                       IPagamentoServiceClient pagamentoServiceClient,
+                                       IProducaoServiceClient producaoServiceClient)
         {
             _pedidoRepository = pedidoRepository;
             _pagamentoServiceClient = pagamentoServiceClient;
+            _producaoServiceClient = producaoServiceClient;
         }
 
         public async Task<Pedido> Create(Pedido pedido)
@@ -34,11 +38,12 @@ namespace DotLanches.Pedidos.Controllers
             return await PedidoUseCases.GetById(pedidoId, pedidoGateway);
         }
 
-        public async Task AcceptPagamento(Guid pedidoId, Guid registroPagamentoId)
+        public async Task RegisterPagamentoForPedido(Guid pedidoId, Guid registroPagamentoId)
         {
             var pedidoGateway = new PedidoGateway(_pedidoRepository);
+            var producaoGateway = new ProducaoGateway(_producaoServiceClient);
 
-            await PedidoUseCases.RegisterPagamentoForPedido(pedidoId, registroPagamentoId, pedidoGateway);
+            await PedidoUseCases.RegisterPagamentoForPedido(pedidoId, registroPagamentoId, pedidoGateway, producaoGateway);
         }
     }
 }

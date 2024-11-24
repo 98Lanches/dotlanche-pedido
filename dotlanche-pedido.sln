@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BDDTests", "BDDTests", "{26
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.BDDTests", "test\BDDTests\DotLanches.Pedidos.BDDTests\DotLanches.Pedidos.BDDTests.csproj", "{5424295D-B6E2-4CF0-8751-5B5A79C972E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.PagamentoServiceClient", "src\FrameworksAndDrivers\Clients\DotLanches.Pedidos.PagamentoServiceClient\DotLanches.Pedidos.PagamentoServiceClient.csproj", "{77ABAD34-3E37-48C4-BF94-C62AE6DEA316}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLanches.Pedidos.Integrations", "src\FrameworksAndDrivers\Clients\DotLanches.Pedidos.PagamentoServiceClient\DotLanches.Pedidos.Integrations.csproj", "{77ABAD34-3E37-48C4-BF94-C62AE6DEA316}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{2BFB479C-5DAA-4B06-A42E-FBEEA765E1C8}"
 	ProjectSection(SolutionItems) = preProject

@@ -3,10 +3,10 @@ using DotLanches.Pedidos.Domain.Enums;
 using DotLanches.Pedidos.Domain.Interfaces.Clients;
 using DotLanches.Pedidos.Domain.ValueObjects;
 using DotLanches.Pedidos.Gateways.Exceptions;
-using DotLanches.Pedidos.PagamentoServiceClient.DTOs;
+using DotLanches.Pedidos.Integrations.DTOs;
 using System.Net.Http.Json;
 
-namespace DotLanches.Pedidos.PagamentoServiceClient
+namespace DotLanches.Pedidos.Integrations
 {
     public class PagamentoServiceClient : IPagamentoServiceClient
     {

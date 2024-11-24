@@ -1,4 +1,4 @@
-﻿namespace DotLanches.Pedidos.PagamentoServiceClient.DTOs
+﻿namespace DotLanches.Pedidos.Integrations.DTOs
 {
     internal class RegisterPagamentoForPedidoResponse
     {

@@ -16,8 +16,7 @@ services:
     networks:
       - dotLanchesPedidoNetwork
 
-  mocks:
-    hostname: mocks
+  mock-services:
     image: jkris/mountebank:latest
     volumes:
     - ./mockFiles:/imposters
@@ -26,6 +25,8 @@ services:
     - 8002:8002 # Pagamento
     - 8004:8004 # Producao
     command: --configfile /imposters/imposters.ejs --allowInjection
+    networks:
+      - dotLanchesPedidoNetwork
 
   api:
     build: 
@@ -36,11 +37,11 @@ services:
     depends_on:
       - db
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=mongodb://sudowoodo:P455w0rd@db:27017/?appName=dotlanche
-      - Integrations__PagamentoService__BaseAddress=http://mocks:8002
-      - Integrations__ProducaoService__BaseAddress=http://mocks:8004
+      - Integrations__PagamentoService__BaseAddress=http://mock-services:8002
+      - Integrations__ProducaoService__BaseAddress=http://mock-services:8004
     networks:
       - dotLanchesPedidoNetwork

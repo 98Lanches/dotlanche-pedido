@@ -23,7 +23,7 @@ namespace DotLanches.Pedidos.Application.UseCases
             return await pedidoGateway.GetById(idPedido);
         }
 
-        public static async Task RegisterPagamentoForPedido(Guid idPedido, Guid idRegistroPagamento, IPedidoGateway pedidoGateway)
+        public static async Task RegisterPagamentoForPedido(Guid idPedido, Guid idRegistroPagamento, IPedidoGateway pedidoGateway, IProducaoGateway producaoGateway)
         {
             var pedido = await pedidoGateway.GetById(idPedido) ??
                 throw new UseCaseException($"pedido {idPedido} was not found!");
@@ -33,12 +33,7 @@ namespace DotLanches.Pedidos.Application.UseCases
 
             await pedidoGateway.Update(pedido);
 
-            // TO DO: Start Producao Pedido after update, calling producao service
-        }
-
-        public static async Task StartProducaoPedido(Pedido pedido)
-        {
-            throw new NotImplementedException();
+            await producaoGateway.StartProducaoPedido(pedido);
         }
     }
 }

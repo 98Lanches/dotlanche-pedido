@@ -45,6 +45,8 @@ spec:
               value: dotlanche-pedido
             - name: Integrations__PagamentoService__BaseAddress
               value: http://dotlanche-pagamento-svc
+            - name: Integrations__ProducaoService__BaseAddress
+              value: http://dotlanche-producao-svc
             - name: ConnectionStrings__DefaultConnection
               valueFrom:
                 secretKeyRef: 

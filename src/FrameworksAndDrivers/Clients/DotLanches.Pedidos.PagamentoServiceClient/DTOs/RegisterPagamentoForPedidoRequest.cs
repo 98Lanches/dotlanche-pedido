@@ -1,6 +1,6 @@
 ﻿using DotLanches.Pedidos.Domain.Enums;
 
-namespace DotLanches.Pedidos.PagamentoServiceClient.DTOs
+namespace DotLanches.Pedidos.Integrations.DTOs
 {
     public class RegisterPagamentoForPedidoRequest
     {

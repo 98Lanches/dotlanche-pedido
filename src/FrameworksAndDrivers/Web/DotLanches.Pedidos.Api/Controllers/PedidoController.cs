@@ -15,11 +15,18 @@ namespace DotLanches.Pedidos.Api.Controllers
     {
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IPagamentoServiceClient _pagamentoServiceClient;
+        private readonly IProducaoServiceClient _producaoServiceClient;
+        private readonly AdapterPedidoController adapterPedido;
 
-        public PedidoController(IPedidoRepository pedidoRepository, IPagamentoServiceClient pagamentoServiceClient)
+        public PedidoController(IPedidoRepository pedidoRepository,
+                                IPagamentoServiceClient pagamentoServiceClient,
+                                IProducaoServiceClient producaoServiceClient)
         {
             _pedidoRepository = pedidoRepository;
             _pagamentoServiceClient = pagamentoServiceClient;
+            _producaoServiceClient = producaoServiceClient;
+
+            adapterPedido = new AdapterPedidoController(_pedidoRepository, _pagamentoServiceClient, _producaoServiceClient);
         }
 
         /// <summary>
@@ -32,7 +39,6 @@ namespace DotLanches.Pedidos.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreatePedidoRequest pedidoDto)
         {
-            var adapterPedido = new AdapterPedidoController(_pedidoRepository, _pagamentoServiceClient);
             var newPedido = await adapterPedido.Create(pedidoDto.ToDomainModel());
 
             var response = newPedido.ToResponse();
@@ -49,7 +55,6 @@ namespace DotLanches.Pedidos.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById([FromQuery] Guid idPedido)
         {
-            var adapterPedido = new AdapterPedidoController(_pedidoRepository, _pagamentoServiceClient);
             var pedido = await adapterPedido.GetById(idPedido);
 
             if (pedido == null)
@@ -59,16 +64,15 @@ namespace DotLanches.Pedidos.Api.Controllers
         }
 
         /// <summary>
-        /// Recebe o pagamento de um pedido
+        /// Registra o pagamento de um pedido
         /// </summary>
         /// <param name="request">Dados do pagamento</param>
         [HttpPatch]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AcceptPagamento([FromBody] AcceptPagamentoRequest request)
+        public async Task<IActionResult> RegisterPagamentoForPedido([FromBody] RegisterPagamentoForPedidoRequest request)
         {
-            var adapterPedido = new AdapterPedidoController(_pedidoRepository, _pagamentoServiceClient);
-            await adapterPedido.AcceptPagamento(request.PedidoId, request.RegistroPagamentoId);
+            await adapterPedido.RegisterPagamentoForPedido(request.PedidoId, request.RegistroPagamentoId);
 
             return Ok();
         }

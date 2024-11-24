@@ -21,7 +21,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Core\DotLanches.Pedidos.Application\DotLanches.Pedidos.UseCases.csproj" />
       <ProjectReference Include="..\..\..\InterfaceAdapters\Controllers\DotLanches.Pedidos.Controllers\DotLanches.Pedidos.Controllers.csproj" />
-      <ProjectReference Include="..\..\Clients\DotLanches.Pedidos.PagamentoServiceClient\DotLanches.Pedidos.PagamentoServiceClient.csproj" />
+      <ProjectReference Include="..\..\Clients\DotLanches.Pedidos.PagamentoServiceClient\DotLanches.Pedidos.Integrations.csproj" />
       <ProjectReference Include="..\..\Database\DotLanches.Pedidos.Data\DotLanches.Pedidos.DataMongo.csproj" />
     </ItemGroup>
 

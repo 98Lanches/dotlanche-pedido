@@ -3,7 +3,7 @@ using DotLanches.Pedidos.Gateways.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DotLanches.Pedidos.PagamentoServiceClient.Extensions
+namespace DotLanches.Pedidos.Integrations.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -11,12 +11,22 @@ namespace DotLanches.Pedidos.PagamentoServiceClient.Extensions
         {
             services.AddHttpClient<IPagamentoServiceClient, PagamentoServiceClient>(client =>
             {
-                client.BaseAddress = new Uri(config["Integrations:PagamentoService:BaseAddress"] ?? 
+                client.BaseAddress = new Uri(config["Integrations:PagamentoService:BaseAddress"] ??
                     throw new MisconfigurationException("Integrations:PagamentoService:BaseAddress"));
             });
 
             return services;
         }
 
+        public static IServiceCollection AddProducaoServiceIntegration(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddHttpClient<IProducaoServiceClient, ProducaoServiceClient>(client =>
+            {
+                client.BaseAddress = new Uri(config["Integrations:ProducaoService:BaseAddress"] ??
+                    throw new MisconfigurationException("Integrations:ProducaoService:BaseAddress"));
+            });
+
+            return services;
+        }
     }
 }
