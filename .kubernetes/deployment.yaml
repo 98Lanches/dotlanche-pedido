@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotlanche-pedido-deployment
+  labels:
+    app: dotlanche
+spec:
+  selector:
+    matchLabels: 
+      app: dotlanche-pedido
+  template:
+    metadata:
+      labels:
+        app: dotlanche-pedido
+    spec:
+      containers:
+        - name: c-dotlanche-pedido
+          image: dotlanche-pedido-api:v0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 250m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080 
+            initialDelaySeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080 
+            initialDelaySeconds: 300
+            periodSeconds: 300
+            failureThreshold: 3
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: MongoDb__DatabaseName
+              value: dotlanche-pedido
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef: 
+                  name: dotlanche-pedido-secrets
+                  key: connection-string
