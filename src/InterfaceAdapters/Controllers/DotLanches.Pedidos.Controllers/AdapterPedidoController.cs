@@ -26,5 +26,19 @@ namespace DotLanches.Pedidos.Controllers
 
             return newPedido;
         }
+
+        public async Task<Pedido?> GetById(Guid pedidoId)
+        {
+            var pedidoGateway = new PedidoGateway(_pedidoRepository);
+
+            return await PedidoUseCases.GetById(pedidoId, pedidoGateway);
+        }
+
+        public async Task AcceptPagamento(Guid pedidoId, Guid registroPagamentoId)
+        {
+            var pedidoGateway = new PedidoGateway(_pedidoRepository);
+
+            await PedidoUseCases.RegisterPagamentoForPedido(pedidoId, registroPagamentoId, pedidoGateway);
+        }
     }
 }

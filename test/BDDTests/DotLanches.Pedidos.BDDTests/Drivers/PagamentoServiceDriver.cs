@@ -35,7 +35,7 @@ namespace DotLanches.Pedidos.BDDTests.Drivers
                 .Given(
                     Request.Create()
                     .UsingPost()
-                    .WithPath("/pagamentos")
+                    .WithPath("/api/pagamentos")
                  )
                 .RespondWith(
                     Response.Create()
