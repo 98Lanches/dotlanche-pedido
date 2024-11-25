@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: c-dotlanche-pedido
-          image: dotlanche-pedido-api:v0
+          image: "#{APP_IMAGE}#"
           ports:
             - containerPort: 8080
           resources:
@@ -42,7 +42,7 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Production
             - name: MongoDb__DatabaseName
-              value: dotlanche-pedido
+              value: "#{DATABASE_NAME}#"
             - name: Integrations__PagamentoService__BaseAddress
               value: http://dotlanche-pagamento-svc
             - name: Integrations__ProducaoService__BaseAddress
