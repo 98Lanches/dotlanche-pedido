@@ -13,20 +13,13 @@ namespace DotLanches.Pedidos.Api.Controllers
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public class PedidoController : ControllerBase
     {
-        private readonly IPedidoRepository _pedidoRepository;
-        private readonly IPagamentoServiceClient _pagamentoServiceClient;
-        private readonly IProducaoServiceClient _producaoServiceClient;
         private readonly AdapterPedidoController adapterPedido;
 
         public PedidoController(IPedidoRepository pedidoRepository,
                                 IPagamentoServiceClient pagamentoServiceClient,
                                 IProducaoServiceClient producaoServiceClient)
         {
-            _pedidoRepository = pedidoRepository;
-            _pagamentoServiceClient = pagamentoServiceClient;
-            _producaoServiceClient = producaoServiceClient;
-
-            adapterPedido = new AdapterPedidoController(_pedidoRepository, _pagamentoServiceClient, _producaoServiceClient);
+            adapterPedido = new AdapterPedidoController(pedidoRepository, pagamentoServiceClient, producaoServiceClient);
         }
 
         /// <summary>

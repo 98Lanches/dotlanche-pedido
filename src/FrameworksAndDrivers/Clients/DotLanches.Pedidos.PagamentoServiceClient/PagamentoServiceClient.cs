@@ -36,7 +36,7 @@ namespace DotLanches.Pedidos.Integrations
 
             var responseData = await response.Content.ReadFromJsonAsync<RegisterPagamentoForPedidoResponse>();
 
-            if (responseData is null || responseData.OperationSuccessful is false)
+            if (responseData is null || !responseData.OperationSuccessful)
                 throw new ServiceIntegrationException(ServiceName, "Could not register pagamento for pedido!");
 
             var pagamento = new Pagamento()

@@ -37,7 +37,7 @@ public class StartCreatePedidoStepDefinitions
     }
 
     [Given(@"o servico de pagamentos esta funcionando corretamente")]
-    public void GivenServicoDePagamentoEstaFuncionando()
+    public static void GivenServicoDePagamentoEstaFuncionando()
     {
         PagamentoServiceDriver.SetupSuccessfullQrCodeResponse();
     }
