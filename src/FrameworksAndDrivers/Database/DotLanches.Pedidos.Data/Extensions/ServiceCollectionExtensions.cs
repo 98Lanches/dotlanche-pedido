@@ -12,13 +12,12 @@ namespace DotLanches.Pedidos.DataMongo.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        private const string DATABASE_NAME = "dotlanche";
         private static bool _conventionsRegistered;
 
         public static IServiceCollection ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton(provider => new MongoClient(configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase(DATABASE_NAME));
+            services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase(configuration.GetSection("MongoDb:DatabaseName").Value));
 
             RegisterConventions();
 

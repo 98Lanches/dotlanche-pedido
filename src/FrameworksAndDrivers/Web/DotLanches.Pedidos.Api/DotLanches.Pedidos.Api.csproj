@@ -13,12 +13,15 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="System.Text.Json" Version="8.0.5" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Core\DotLanches.Pedidos.Application\DotLanches.Pedidos.UseCases.csproj" />
       <ProjectReference Include="..\..\..\InterfaceAdapters\Controllers\DotLanches.Pedidos.Controllers\DotLanches.Pedidos.Controllers.csproj" />
+      <ProjectReference Include="..\..\Clients\DotLanches.Pedidos.PagamentoServiceClient\DotLanches.Pedidos.Integrations.csproj" />
       <ProjectReference Include="..\..\Database\DotLanches.Pedidos.Data\DotLanches.Pedidos.DataMongo.csproj" />
     </ItemGroup>
 

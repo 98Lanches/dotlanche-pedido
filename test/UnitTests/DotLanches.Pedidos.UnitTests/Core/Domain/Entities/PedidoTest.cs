@@ -1,4 +1,5 @@
 using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.Enums;
 using DotLanches.Pedidos.Domain.Exceptions;
 using DotLanches.Pedidos.Domain.ValueObjects;
 
@@ -16,7 +17,7 @@ namespace DotLanches.Pedidos.UnitTests.Core.Domain.Entities
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
 
-            var pedido = new Pedido(createdAt, clienteCpf, combos);
+            var pedido = new Pedido(createdAt, clienteCpf, combos, TipoPagamento.QrCode);
 
             Assert.IsNotNull(pedido);
             Assert.That(pedido.TotalPrice, Is.EqualTo(10.00m));
@@ -33,7 +34,7 @@ namespace DotLanches.Pedidos.UnitTests.Core.Domain.Entities
             var clienteCpf = "12345678900";
 
             var ex = Assert.Throws<DomainValidationException>(() =>
-                new Pedido(createdAt, clienteCpf, combos));
+                new Pedido(createdAt, clienteCpf, combos, TipoPagamento.QrCode));
 
             Assert.That(ex.Message, Is.EqualTo("invalid value for O pedido deve conter pelo menos um combo!"));
         }
@@ -44,7 +45,7 @@ namespace DotLanches.Pedidos.UnitTests.Core.Domain.Entities
             var createdAt = DateTime.Now;
             var clienteCpf = "12345678900";
 
-            var ex = Assert.Throws<ArgumentNullException>(() => new Pedido(createdAt, clienteCpf, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new Pedido(createdAt, clienteCpf, null, TipoPagamento.QrCode));
 
             Assert.That(ex.ParamName, Is.EqualTo("combos"));
         }

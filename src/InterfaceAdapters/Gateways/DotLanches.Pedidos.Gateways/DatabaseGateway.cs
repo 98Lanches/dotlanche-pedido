@@ -4,11 +4,11 @@ using DotLanches.Pedidos.Domain.Interfaces.Repositories;
 
 namespace DotLanches.Pedidos.Gateways
 {
-    public class PedidoGateway : IPedidoGateway
+    public class DatabaseGateway : IDatabaseGateway
     {
         private readonly IPedidoRepository _pedidoRepository;
 
-        public PedidoGateway(IPedidoRepository pedidoRepository)
+        public DatabaseGateway(IPedidoRepository pedidoRepository)
         {
             _pedidoRepository = pedidoRepository;
         }

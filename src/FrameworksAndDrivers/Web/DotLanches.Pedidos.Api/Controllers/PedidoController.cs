@@ -1,7 +1,9 @@
-﻿using DotLanches.Pedidos.Api.Dtos;
-using DotLanches.Pedidos.Api.Mappers;
+﻿using DotLanches.Pedidos.Api.Mappers;
 using DotLanches.Pedidos.Controllers;
+using DotLanches.Pedidos.Domain.Entities;
+using DotLanches.Pedidos.Domain.Interfaces.Clients;
 using DotLanches.Pedidos.Domain.Interfaces.Repositories;
+using DotLanches.Pedidos.Presenters.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotLanches.Pedidos.Api.Controllers
@@ -11,11 +13,13 @@ namespace DotLanches.Pedidos.Api.Controllers
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public class PedidoController : ControllerBase
     {
-        private readonly IPedidoRepository _pedidoRepository;
+        private readonly AdapterPedidoController adapterPedido;
 
-        public PedidoController(IPedidoRepository pedidoRepository)
+        public PedidoController(IPedidoRepository pedidoRepository,
+                                IPagamentoServiceClient pagamentoServiceClient,
+                                IProducaoServiceClient producaoServiceClient)
         {
-            _pedidoRepository = pedidoRepository;
+            adapterPedido = new AdapterPedidoController(pedidoRepository, pagamentoServiceClient, producaoServiceClient);
         }
 
         /// <summary>
@@ -26,12 +30,44 @@ namespace DotLanches.Pedidos.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create([FromBody] PedidoDto pedidoDto)
+        public async Task<IActionResult> Create([FromBody] CreatePedidoRequest pedidoDto)
         {
-            var adapterPedido = new AdapterPedidoController( _pedidoRepository);
-            var pedidoId = await adapterPedido.Create(pedidoDto.ToDomainModel());
+            var newPedido = await adapterPedido.Create(pedidoDto.ToDomainModel());
 
-            return new CreatedResult(string.Empty, new {pedidoId});
+            var response = newPedido.ToResponse();
+
+            return new CreatedResult(string.Empty, response);
+        }
+
+        /// <summary>
+        /// Obtém um pedido pelo seu ID
+        /// </summary>
+        /// <param name="idPedido">Id do pedido</param>
+        [HttpGet]
+        [ProducesResponseType(typeof(Pedido), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetById([FromQuery] Guid idPedido)
+        {
+            var pedido = await adapterPedido.GetById(idPedido);
+
+            if (pedido == null)
+                return NotFound("pedido not found");
+
+            return Ok(pedido);
+        }
+
+        /// <summary>
+        /// Registra o pagamento de um pedido
+        /// </summary>
+        /// <param name="request">Dados do pagamento</param>
+        [HttpPatch]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> RegisterPagamentoForPedido([FromBody] RegisterPagamentoForPedidoRequest request)
+        {
+            await adapterPedido.RegisterPagamentoForPedido(request.PedidoId, request.RegistroPagamentoId);
+
+            return Ok();
         }
     }
 }

@@ -18,12 +18,13 @@
         <PackageReference Include="EphemeralMongo6.runtime.win-x64" Version="1.1.3" />
         <PackageReference Include="FluentAssertions" Version="6.12.2" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.10" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-        <PackageReference Include="NUnit" Version="3.14.0"/>
-        <PackageReference Include="NUnit.Analyzers" Version="3.9.0"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+        <PackageReference Include="NUnit" Version="3.14.0" />
+        <PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
         <PackageReference Include="Reqnroll" Version="2.2.1" />
         <PackageReference Include="Reqnroll.NUnit" Version="2.2.1" />
+        <PackageReference Include="WireMock.Net" Version="1.6.8" />
     </ItemGroup>
     
     <ItemGroup>
@@ -31,11 +32,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="**/*.feature"/>
+        <Content Include="**/*.feature" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Support\" />
+      <Compile Remove="Support\**" />
+      <Content Remove="Support\**" />
+      <EmbeddedResource Remove="Support\**" />
+      <None Remove="Support\**" />
+      <ReqnrollFeatureFiles Remove="Support\**" />
+      <ReqnrollObsoleteCodeBehindFiles Remove="Support\**" />
     </ItemGroup>
 
     <ItemGroup>

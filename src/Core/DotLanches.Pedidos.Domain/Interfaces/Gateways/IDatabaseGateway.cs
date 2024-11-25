@@ -2,7 +2,7 @@
 
 namespace DotLanches.Pedidos.Domain.Interfaces.Gateways
 {
-    public interface IPedidoGateway
+    public interface IDatabaseGateway
     {
         Task Add(Pedido pedido);
 

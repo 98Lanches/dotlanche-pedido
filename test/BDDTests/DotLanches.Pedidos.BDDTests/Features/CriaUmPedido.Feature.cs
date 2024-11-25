@@ -88,6 +88,9 @@ namespace DotLanches.Pedidos.BDDTests.Features
 #line 4
     await testRunner.GivenAsync("que a API está em execução", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dado ");
 #line hidden
+#line 5
+    await testRunner.AndAsync("o servico de pagamentos esta funcionando corretamente", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -97,7 +100,7 @@ namespace DotLanches.Pedidos.BDDTests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Criar um pedido com sucesso", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -118,17 +121,20 @@ await this.FeatureBackgroundAsync();
                             "\"12345678909\"",
                             "257c6ee9-774b-4c54-b564-6fca37573348",
                             "10.50"});
-#line 7
+#line 8
     await testRunner.GivenAsync("que o payload do pedido é válido", ((string)(null)), table1, "Dado ");
 #line hidden
-#line 10
+#line 11
     await testRunner.WhenAsync("envio uma requisição POST para \"/Pedido\" com o payload", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
-#line 11
+#line 12
     await testRunner.ThenAsync("a resposta deve ter o status 201 Created", ((string)(null)), ((global::Reqnroll.Table)(null)), "Então ");
 #line hidden
-#line 12
+#line 13
     await testRunner.AndAsync("a resposta deve conter o ID do pedido criado", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 14
+    await testRunner.AndAsync("a resposta deve conter o QR code para pagamento", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
