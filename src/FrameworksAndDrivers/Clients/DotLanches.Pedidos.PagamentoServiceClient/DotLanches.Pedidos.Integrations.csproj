@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\..\InterfaceAdapters\Gateways\DotLanches.Pedidos.Gateways\DotLanches.Pedidos.Gateways.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+     <InternalsVisibleTo Include="DotLanches.Pedidos.UnitTests" />
+  </ItemGroup>
+
 </Project>
