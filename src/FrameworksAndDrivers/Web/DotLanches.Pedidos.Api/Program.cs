@@ -1,41 +1,58 @@
 using DotLanches.Pedidos.Api.Extensions;
+using Serilog;
 using System.Text.Json.Serialization;
 
-namespace DotLanches.Pedidos.Api
+namespace DotLanches.Pedidos.Api;
+
+public class Program
 {
-    public class Program
+    public static WebApplication CreateApp(string[] args)
     {
-        public static WebApplication CreateApp(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.ConfigureApplicationServices(builder.Configuration);
+        builder.Services.AddSerilog();
+
+        builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
-            builder.Services.ConfigureApplicationServices(builder.Configuration);
+        builder.Services.AddHttpLogging(logging =>
+        {
+        });
 
-            builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
+        var app = builder.Build();
 
-            builder.Services.AddHttpLogging(logging =>
-            {
-            });
+        app.UseSerilogRequestLogging();
+        app.MapHealthChecks("/health");
+        app.UseHttpLogging();
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        app.MapControllers();
+        app.UseExceptionHandler();
 
-            var app = builder.Build();
+        return app;
+    }
 
-            app.MapHealthChecks("/health");
-            app.UseHttpLogging();
-            app.UseSwagger();
-            app.UseSwaggerUI();
-            app.MapControllers();
-            app.UseExceptionHandler();
+    public static void Main(string[] args)
+    {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
 
-            return app;
-        }
-
-        public static void Main(string[] args)
+        try
         {
             var app = CreateApp(args);
             app.Run();
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Application terminated unexpectedly");
+        }
+        finally
+        {
+            Log.CloseAndFlush();
         }
     }
 }
