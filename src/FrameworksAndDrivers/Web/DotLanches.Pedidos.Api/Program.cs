@@ -11,22 +11,18 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.ConfigureApplicationServices(builder.Configuration);
-        builder.Services.AddSerilog();
+        builder.Services.ConfigureLogging(builder.Configuration);
+        builder.Services.ConfigureOpenTelemetry(builder.Configuration);
 
         builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
 
-        builder.Services.AddHttpLogging(logging =>
-        {
-        });
-
         var app = builder.Build();
 
         app.UseSerilogRequestLogging();
         app.MapHealthChecks("/health");
-        app.UseHttpLogging();
         app.UseSwagger();
         app.UseSwaggerUI();
         app.MapControllers();

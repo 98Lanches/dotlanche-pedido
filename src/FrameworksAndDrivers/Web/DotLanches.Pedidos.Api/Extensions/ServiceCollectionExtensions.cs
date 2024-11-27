@@ -2,6 +2,10 @@
 using DotLanches.Pedidos.DataMongo.Extensions;
 using DotLanches.Pedidos.Integrations.Extensions;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using Serilog;
 using System.Reflection;
 
 namespace DotLanches.Pedidos.Api.Extensions
@@ -47,9 +51,44 @@ namespace DotLanches.Pedidos.Api.Extensions
         private static IServiceCollection ConfigureHealthChecks(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHealthChecks()
-                .AddMongoDb(configuration.GetConnectionString("DefaultConnection") 
-                                ?? throw new Exception("No connection string for mongodb provided!"), 
+                .AddMongoDb(configuration.GetConnectionString("DefaultConnection")
+                                ?? throw new Exception("No connection string for mongodb provided!"),
                             timeout: TimeSpan.FromSeconds(60));
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureLogging(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSerilog();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureOpenTelemetry(this IServiceCollection services, IConfiguration configuration)
+        {
+            var tracingOtlpEndpoint = configuration["OpenTelemetry:ProviderEndpointUrl"];
+            var otel = services.AddOpenTelemetry();
+
+            otel.ConfigureResource(resource => resource.AddService(serviceName: "Pedidos Api"));
+
+            otel.WithMetrics(metrics => metrics
+                .AddAspNetCoreInstrumentation()
+                .AddMeter("Microsoft.AspNetCore.Hosting")
+                .AddMeter("Microsoft.AspNetCore.Server.Kestrel"));
+
+            otel.WithTracing(tracing =>
+            {
+                tracing.AddAspNetCoreInstrumentation();
+                tracing.AddHttpClientInstrumentation();
+                if (tracingOtlpEndpoint != null)
+                {
+                    tracing.AddOtlpExporter(otlpOptions =>
+                     {
+                         otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
+                     });
+                }
+            });
 
             return services;
         }

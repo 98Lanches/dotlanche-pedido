@@ -28,6 +28,22 @@ services:
     networks:
       - dotLanchesPedidoNetwork
 
+  jaeger:
+    hostname: jaeger
+    image: jaegertracing/all-in-one
+    ports:
+    - "16686:16686"
+    - "4317:4317"
+    - "4318:4318"
+    - "14250:14250"
+    - "14268:14268"
+    - "14269:14269"
+    - "9411:9411"
+    environment:
+      COLLECTOR_ZIPKIN_HOST_PORT: 9411
+    networks:
+      - dotLanchesPedidoNetwork
+
   api:
     build: 
       context: .
@@ -43,5 +59,6 @@ services:
       - ConnectionStrings__DefaultConnection=mongodb://sudowoodo:P455w0rd@db:27017/?appName=dotlanche
       - Integrations__PagamentoService__BaseAddress=http://mock-services:8002
       - Integrations__ProducaoService__BaseAddress=http://mock-services:8004
+      - OpenTelemetry__ProviderEndpointUrl=http://jaeger:4317/
     networks:
       - dotLanchesPedidoNetwork
