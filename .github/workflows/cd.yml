@@ -56,6 +56,7 @@ jobs:
           files: '[".kubernetes/*.yaml"]'
         env:
           APP_IMAGE: ${{ steps.meta.outputs.tags }}
+          DATABASE_NAME: ${{ vars.PEDIDO_DATABASE_NAME }}
           CONNECTION_STRING: mongodb+srv://${{ vars.PEDIDO_DB_USER }}:${{ secrets.PEDIDO_DB_PASSWORD }}@${{ vars.ATLAS_HOST }}/?retryWrites=true&w=majority&appName=dotlanches-db-cluster
 
       - name: AWS Cli login
