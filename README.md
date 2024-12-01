@@ -19,7 +19,7 @@ Microsserviço de Pedidos Dotlanche. Responsável pela criação do pedido.
 - GitHub Actions
 
 # Arquitetura do Sistema
-O serviço foi construído utilizando clean architecture para organização interna. O banco de dados selecionado foi o MongoDB pela escalabilidade e performance de escrita.
+O Serviço é uma WebApi com alguns endpoints síncronos. Foi construído utilizando clean architecture para organização interna. O banco de dados selecionado foi o MongoDB pela escalabilidade e performance de escrita.
 
 # Como executar o projeto
 
